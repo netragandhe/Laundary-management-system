@@ -1,0 +1,295 @@
+.privacy-page-root {
+  min-height: 100vh;
+  background-color: #060713;
+  color: #f8fafc;
+  font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Ambient Background Glows */
+.privacy-ambient-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.privacy-glow-1 {
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+  filter: blur(80px);
+}
+
+.privacy-glow-2 {
+  position: absolute;
+  top: 30%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 242, 254, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+  filter: blur(100px);
+}
+
+.privacy-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+.privacy-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(6, 7, 19, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.privacy-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 75px;
+}
+
+.privacy-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.privacy-logo-box {
+  width: 40px;
+  height: 40px;
+  padding: 4px;
+  background: #000;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.privacy-logo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 5px;
+}
+
+.privacy-brand-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.privacy-brand-name span {
+  color: #a855f7;
+}
+
+.privacy-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.5rem 1.2rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.privacy-back-btn:hover {
+  background: rgba(0, 242, 254, 0.15);
+  border-color: #00f2fe;
+  color: #00f2fe;
+}
+
+/* Main Body */
+.privacy-main-content {
+  padding-top: 3.5rem;
+  padding-bottom: 5rem;
+}
+
+.privacy-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.4rem 1.1rem;
+  border-radius: 9999px;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  color: #c084fc;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.privacy-title {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.privacy-last-updated {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-bottom: 2.5rem;
+}
+
+/* Main Card */
+.privacy-card {
+  background: rgba(13, 14, 38, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+}
+
+.privacy-intro {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #cbd5e1;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 2.5rem;
+}
+
+.privacy-intro a {
+  color: #00f2fe;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.privacy-sections-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.privacy-section-item h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #00f2fe;
+  margin-bottom: 0.85rem;
+}
+
+.privacy-section-item p {
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: #cbd5e1;
+}
+
+.privacy-section-item ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.privacy-section-item ul li {
+  font-size: 0.96rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+}
+
+.privacy-section-item ul li strong {
+  color: #ffffff;
+}
+
+/* Contact Box */
+.privacy-section-item.contact-box {
+  background: rgba(168, 85, 247, 0.08);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 18px;
+  padding: 1.8rem 2rem;
+  margin-top: 1rem;
+}
+
+.privacy-contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+.privacy-contact-details div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #cbd5e1;
+}
+
+.privacy-contact-details div strong {
+  color: #ffffff;
+}
+
+.privacy-contact-details a {
+  color: #00f2fe;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Footer */
+.privacy-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.8rem 0;
+  background: #04050d;
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+.privacy-footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.privacy-footer-content a {
+  color: #00f2fe;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .privacy-title {
+    font-size: 2.2rem;
+  }
+  .privacy-card {
+    padding: 1.8rem 1.4rem;
+  }
+  .privacy-footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+}
