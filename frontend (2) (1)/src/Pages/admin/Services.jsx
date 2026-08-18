@@ -146,7 +146,7 @@ const LaundryServices = () => {
         const statusClass =
           row.status === 'Active'
             ? 'status-pill bg-emerald-500/10 text-emerald-600 border-emerald-500/15'
-            : 'status-pill bg-amber-500/10 text-amber-600 border-amber-500/15';
+            : 'status-pill bg-indigo-500/10 text-indigo-600 border-indigo-500/15';
         return <span className={statusClass}>{row.status}</span>;
       },
     },

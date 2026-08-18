@@ -390,7 +390,7 @@ const Invoices = () => {
                   onChange={(e) => setHoldComment(e.target.value)}
                   rows={3}
                   placeholder="Reason for hold..."
-                  className="mt-1 w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-amber-400/40"
+                  className="mt-1 w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-indigo-400/40"
                 />
               </div>
             )}
@@ -587,7 +587,7 @@ const Invoices = () => {
               {/* ── STEP: LINK ── */}
               {paymentStep === 'link' && (
                 <div className="space-y-4 mt-2">
-                  <div className="flex flex-col items-center justify-center p-4 rounded-2xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
+                  <div className="flex flex-col items-center justify-center p-4 rounded-2xl bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800">
                     <span className="text-4xl mb-2">🔗</span>
                     <p className="text-sm font-semibold text-primary">Pay with Link</p>
                     <p className="text-xs text-secondary text-center mt-1">Fast, secure, 1-click checkout by Stripe.</p>
@@ -596,7 +596,7 @@ const Invoices = () => {
                     <label className="text-xs font-semibold text-secondary uppercase tracking-wider">Link Account Email</label>
                     <input
                       type="email"
-                      className="mt-1 w-full rounded-xl border border-border bg-surface px-3 py-2 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-amber-400/40"
+                      className="mt-1 w-full rounded-xl border border-border bg-surface px-3 py-2 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-indigo-400/40"
                       placeholder="e.g. user@example.com"
                       value={linkForm.email}
                       onChange={(e) => setLinkForm({ email: e.target.value })}

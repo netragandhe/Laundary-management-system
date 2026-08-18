@@ -148,19 +148,20 @@ const RoleSidebar = ({ menuItems, roleLabel, footerText }) => {
             <FiX size={18} />
           </button>
 
-          <div className="mb-6 flex items-center justify-center p-4 transition-all duration-300">
-            <div className="w-16 h-16 rounded-lg shadow-md bg-white flex items-center justify-center transition-all duration-300 hover:scale-105 p-1">
-              <img src="/logo.png" alt="Tuhama Logo" className="w-full h-full object-contain" />
+          <div className="mb-6 flex flex-col items-center justify-center pt-2 transition-all duration-300">
+            <span className="text-[13px] font-black text-[#00f2fe] uppercase tracking-[0.15em] mb-2 text-center drop-shadow-md">Laundry Management</span>
+            <div className="w-16 h-16 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 p-1">
+              <img src="/logo.png" alt="KT Logo" className="w-full h-full object-contain" />
             </div>
           </div>
 
-          <div className="text-center mb-4">
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-500 bg-blue-500/10 px-2 py-1 rounded-full">
+          <div className="text-center mb-6">
+            <div className="inline-block text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-gray-200 bg-white/10 px-3 py-1.5 rounded-full leading-tight max-w-full break-words">
               {roleLabel || userRole || 'Staff'}
-            </span>
+            </div>
           </div>
 
-          <nav className="flex-1 space-y-2">
+          <nav className="flex-1 space-y-1">
             {menuItems
               .filter((item) => !item.permission || allowedPermissions.includes(item.permission))
               .map((item) => (
@@ -169,9 +170,9 @@ const RoleSidebar = ({ menuItems, roleLabel, footerText }) => {
                   to={item.to}
                   end={item.end}
                   className={({ isActive }) =>
-                    `flex items-center gap-3 rounded-3xl px-4 py-3 text-sm transition-all duration-200 ${isActive
-                      ? 'sidebar-nav-active bg-blue-500/10 text-blue-600 shadow-sm'
-                      : 'text-secondary hover:bg-surface-alt hover:text-primary'
+                    `flex items-center gap-3 rounded-2xl px-4 py-2.5 text-sm transition-all duration-200 ${isActive
+                      ? 'sidebar-nav-active bg-white/10 text-white shadow-sm'
+                      : 'text-gray-400 hover:bg-white/5 hover:text-gray-100'
                     }`
                   }
                   onClick={() => setOpen(false)}

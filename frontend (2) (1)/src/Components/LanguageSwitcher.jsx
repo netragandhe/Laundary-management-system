@@ -44,7 +44,7 @@ const LanguageSwitcher = () => {
         <FiChevronDown className={`hidden xl:inline w-4 h-4 text-secondary transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
-      <div className={`lang-dropdown-menu ${isOpen ? 'open' : ''}`}>
+      <div className={`lang-dropdown-menu nav-dropdown ${isOpen ? 'open' : ''}`}>
         <button
           type="button"
           onClick={() => handleLanguageChange('en')}

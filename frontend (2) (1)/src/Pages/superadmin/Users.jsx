@@ -290,7 +290,7 @@ const Users = () => {
 
           {/* Toggle Lock / Unlock */}
           <button 
-            className={`icon-button-small ${row.isLocked ? 'text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-950/20' : 'text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-950/20'}`} 
+            className={`icon-button-small ${row.isLocked ? 'text-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-950/20' : 'text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-950/20'}`} 
             onClick={() => handleToggleLock(row)} 
             aria-label={row.isLocked ? "Unlock User" : "Lock User"}
             title={row.isLocked ? "Unlock User" : "Lock User"}
@@ -322,15 +322,7 @@ const Users = () => {
               <h1 className="mt-3 text-3xl font-semibold text-primary">User & Role Management</h1>
               <p className="mt-2 max-w-2xl text-sm text-secondary">Manage system users, managers, and staff across all laundry branches.</p>
             </div>
-            <div className="flex w-full flex-col gap-2 md:w-auto md:flex-row">
-              <button
-                onClick={handleOpenAdd}
-                className="dashboard-hero-pill btn-solid-primary flex items-center justify-center gap-2"
-              >
-                <FiPlus size={18} />
-                <span className="font-semibold">Add User</span>
-              </button>
-            </div>
+            {/* Add User button removed per user request */}
           </div>
         </div>
       </section>

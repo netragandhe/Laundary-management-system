@@ -39,13 +39,13 @@ const pill = {
   waiting: 'status-pill bg-sky-500/10 text-sky-600 border-sky-500/15',
   shopPrep: 'status-pill bg-violet-500/10 text-violet-600 border-violet-500/15',
   workshopPrep: 'status-pill bg-indigo-500/10 text-indigo-600 border-indigo-500/15',
-  hold: 'status-pill bg-amber-500/10 text-amber-600 border-amber-500/15',
+  hold: 'status-pill bg-indigo-500/10 text-indigo-600 border-indigo-500/15',
   ready: 'status-pill bg-emerald-500/10 text-emerald-600 border-emerald-500/15',
   readyDelivery: 'status-pill bg-teal-500/10 text-teal-600 border-teal-500/15',
   readyShop: 'status-pill bg-lime-500/10 text-lime-700 border-lime-500/15',
   driver: 'status-pill bg-blue-500/10 text-blue-600 border-blue-500/15',
   delivered: 'status-pill bg-emerald-700/10 text-emerald-700 border-emerald-500/15',
-  return: 'status-pill bg-orange-500/10 text-orange-600 border-orange-500/15',
+  return: 'status-pill bg-purple-500/10 text-purple-600 border-purple-500/15',
   store: 'status-pill bg-slate-500/10 text-slate-600 border-slate-500/15',
 };
 
@@ -89,7 +89,7 @@ export const isTerminalOrderStatus = (status) =>
 export const paymentStatusStyles = {
   Paid: 'status-pill bg-emerald-500/10 text-emerald-600 border-emerald-500/15',
   Partial: 'status-pill bg-sky-500/10 text-sky-600 border-sky-500/15',
-  Pending: 'status-pill bg-amber-500/10 text-amber-600 border-amber-500/15',
+  Pending: 'status-pill bg-indigo-500/10 text-indigo-600 border-indigo-500/15',
 };
 
 export const pickupStatusStyles = {

@@ -144,9 +144,7 @@ const Navbar = () => {
     <header className="glass-nav sticky top-0 z-30 border-b border-border shadow-sm">
       <div className="mx-auto flex max-w-screen-2xl items-center justify-between gap-2 sm:gap-4 px-2 sm:px-4 py-1.5">
         <div className="flex flex-1 items-center gap-3 min-w-max shrink-0 max-lg:ml-10">
-          <div className="hidden md:block whitespace-nowrap shrink-0 rounded-2xl border border-border bg-surface-alt px-4 py-2 text-sm font-semibold text-primary shadow-sm">
-            Tuhama laundry co.
-          </div>
+
         </div>
 
         <div className="flex items-center gap-1.5 sm:gap-3">
@@ -240,7 +238,9 @@ const Navbar = () => {
 
           <ThemeToggle />
 
-          <LanguageSwitcher />
+          <div className="hidden">
+            <LanguageSwitcher />
+          </div>
 
           {/* NOTIFICATIONS */}
           <div className="relative" ref={notificationRef}>
@@ -256,7 +256,7 @@ const Navbar = () => {
             </button>
 
             {notificationOpen && (
-              <div className={`absolute top-full mt-2 w-[320px] rounded-3xl border border-border bg-surface py-3 shadow-xl z-50 ${language === 'ar' ? 'left-0 sm:-left-2' : 'right-0 sm:-right-2'}`}>
+              <div className={`absolute top-full mt-2 w-[320px] rounded-3xl border border-border bg-surface py-3 shadow-xl z-50 nav-dropdown ${language === 'ar' ? 'left-0 sm:-left-2' : 'right-0 sm:-right-2'}`}>
                 <div className="flex items-center justify-between px-4 pb-3 border-b border-border/50">
                   <h3 className="text-sm font-extrabold text-primary">Notifications</h3>
                   {unreadCount > 0 && (
@@ -340,7 +340,7 @@ const Navbar = () => {
                 </div>
               </div>
             </button>
-            <div className={`profile-dropdown-menu ${profileOpen ? 'open' : ''}`}>
+            <div className={`profile-dropdown-menu nav-dropdown ${profileOpen ? 'open' : ''}`}>
               <div className="profile-dropdown-meta">
                 <span className="text-sm font-semibold text-primary">{userName}</span>
                 <span className="text-xs uppercase tracking-[0.22em] text-secondary">{getTranslatedRole(userRole)}</span>

@@ -256,7 +256,7 @@ const OrderList = () => {
                 <span className={getOrderStatusStyle(activeOrder.status)}>{activeOrder.status}</span>
               </p>
               {activeOrder.holdComment && (
-                <p className="mt-1 text-xs text-amber-600">Hold note: {activeOrder.holdComment}</p>
+                <p className="mt-1 text-xs text-indigo-600">Hold note: {activeOrder.holdComment}</p>
               )}
             </div>
             <div>
@@ -298,7 +298,7 @@ const OrderList = () => {
                   onChange={(e) => setHoldComment(e.target.value)}
                   rows={3}
                   placeholder="Reason for hold..."
-                  className="mt-1 w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-amber-400/40"
+                  className="mt-1 w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-indigo-400/40"
                 />
               </div>
             )}

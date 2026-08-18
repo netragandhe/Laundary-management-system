@@ -79,7 +79,7 @@ const OrderTimeline = ({ currentStatus, timeline = [] }) => {
                       Updated by: <span className="font-semibold text-secondary">{entry.updatedBy}</span>
                     </p>
                     {entry.comment && (
-                      <p className="text-xs text-amber-600 mt-1">Hold note: {entry.comment}</p>
+                      <p className="text-xs text-indigo-600 mt-1">Hold note: {entry.comment}</p>
                     )}
                   </div>
                 </div>

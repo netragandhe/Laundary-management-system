@@ -30,7 +30,7 @@ const EMPTY_CATALOG_FORM = {
 
 const SERVICE_MODES = [
     { id: 'Normal', label: 'Normal / Wash & Iron', key: 'normalService', color: 'bg-blue-600 hover:bg-blue-700 text-white' },
-    { id: 'Iron Only', label: 'Iron Only', key: 'ironOnlyService', color: 'bg-amber-600 hover:bg-amber-700 text-white' },
+    { id: 'Iron Only', label: 'Iron Only', key: 'ironOnlyService', color: 'bg-indigo-600 hover:bg-indigo-700 text-white' },
     { id: 'Dry Cleaning', label: 'Dry Cleaning Only', key: 'dryCleanService', color: 'bg-purple-600 hover:bg-purple-700 text-white' },
     { id: 'Urgent', label: 'Express', key: 'urgentService', color: 'bg-rose-600 hover:bg-rose-700 text-white' },
 ];
@@ -39,7 +39,7 @@ const SERVICE_MODES = [
 const CARD_COLORS_LIGHT = [
     'bg-blue-200 border-blue-400 text-blue-900 shadow-blue-100',
     'bg-emerald-200 border-emerald-400 text-emerald-900 shadow-emerald-100',
-    'bg-amber-200 border-amber-400 text-amber-900 shadow-amber-100',
+    'bg-indigo-200 border-indigo-400 text-indigo-900 shadow-indigo-100',
     'bg-violet-200 border-violet-400 text-violet-900 shadow-violet-100',
     'bg-rose-200 border-rose-400 text-rose-900 shadow-rose-100',
     'bg-teal-200 border-teal-400 text-teal-900 shadow-teal-100',
@@ -49,7 +49,7 @@ const CARD_COLORS_LIGHT = [
 const CARD_COLORS_DARK = [
     'bg-blue-950/40 border-blue-900/40 text-blue-200',
     'bg-emerald-950/40 border-emerald-900/40 text-emerald-200',
-    'bg-amber-950/40 border-amber-900/40 text-amber-200',
+    'bg-indigo-950/40 border-indigo-900/40 text-indigo-200',
     'bg-purple-950/40 border-purple-900/40 text-purple-200',
     'bg-rose-950/40 border-rose-900/40 text-rose-200',
     'bg-cyan-950/40 border-cyan-900/40 text-cyan-200',
@@ -1429,7 +1429,7 @@ const MakeInvoice = () => {
                             <div className="flex gap-2 pt-2">
                                 <button
                                     onClick={handleEditCatalogSubmit}
-                                    className="flex-1 bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 rounded-xl text-sm transition-colors"
+                                    className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 rounded-xl text-sm transition-colors"
                                 >
                                     Update Catalog
                                 </button>
@@ -1495,7 +1495,7 @@ const MakeInvoice = () => {
                                 </h2>
                                 <p className={`text-sm mt-0.5 ${isLight ? 'text-stone-500' : 'text-slate-400'}`}>
                                     {t('counter.makeInvoice.garmentBasePrice') || 'Base price'}:{' '}
-                                    <span className={`font-mono font-bold ${isLight ? 'text-amber-700' : 'text-cyan-400'}`}>
+                                    <span className={`font-mono font-bold ${isLight ? 'text-indigo-700' : 'text-cyan-400'}`}>
                                         {formatCurrency(selectedGarment.price)}
                                     </span>
                                 </p>
@@ -1540,14 +1540,14 @@ const MakeInvoice = () => {
                                     <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0"
                                         style={{ background: isLight ? 'rgba(255,255,255,0.2)' : 'rgba(245,158,11,0.2)' }}>♨️</div>
                                     <div className="text-left flex-1">
-                                        <div className={`text-sm font-bold ${isLight ? 'text-white' : 'text-amber-300'}`}>
+                                        <div className={`text-sm font-bold ${isLight ? 'text-white' : 'text-indigo-300'}`}>
                                             {t('counter.makeInvoice.ironOnlyService') || 'Iron Only'}
                                         </div>
-                                        <div className={`text-xs mt-0.5 ${isLight ? 'text-amber-100' : 'text-amber-400/60'}`}>
+                                        <div className={`text-xs mt-0.5 ${isLight ? 'text-indigo-100' : 'text-indigo-400/60'}`}>
                                             {formatCurrency(selectedGarment.price)}
                                         </div>
                                     </div>
-                                    <div className={`opacity-70 text-lg ${isLight ? 'text-white' : 'text-amber-400'}`}>›</div>
+                                    <div className={`opacity-70 text-lg ${isLight ? 'text-white' : 'text-indigo-400'}`}>›</div>
                                 </button>
 
                                 {/* Dry Cleaning */}
@@ -1695,14 +1695,14 @@ const MakeInvoice = () => {
                                                 onClick={() => handleSelectCustomer(c)}
                                                 className={`w-full text-left px-3 py-2 text-xs border-b border-border/40 flex justify-between items-center transition-colors ${
                                                     isSub
-                                                        ? 'bg-amber-100 dark:bg-amber-950/80 hover:bg-amber-200 dark:hover:bg-amber-900/90 text-amber-900 dark:text-amber-100 font-bold border-l-4 border-l-amber-500'
+                                                        ? 'bg-indigo-100 dark:bg-indigo-950/80 hover:bg-indigo-200 dark:hover:bg-indigo-900/90 text-indigo-900 dark:text-indigo-100 font-bold border-l-4 border-l-indigo-500'
                                                         : 'hover:bg-surface-alt text-primary'
                                                 }`}
                                             >
                                                 <div className="flex items-center gap-1.5 min-w-0">
                                                     <span className="font-semibold truncate">{language === 'ar' && c.arabicName?.trim() ? c.arabicName : c.name}</span>
                                                     {isSub && (
-                                                        <span className="bg-amber-600 text-white text-[9px] px-1.5 py-0.5 rounded-full font-black uppercase tracking-wider shadow-sm shrink-0 flex items-center gap-0.5">
+                                                        <span className="bg-indigo-600 text-white text-[9px] px-1.5 py-0.5 rounded-full font-black uppercase tracking-wider shadow-sm shrink-0 flex items-center gap-0.5">
                                                             ⭐ SUBSCRIBER
                                                         </span>
                                                     )}
@@ -1726,14 +1726,14 @@ const MakeInvoice = () => {
                                 <div className="mt-1 space-y-1">
                                     <div className={`p-2 rounded-lg border text-[11px] font-medium flex items-center justify-between gap-2 shadow-sm ${
                                         isSub
-                                            ? 'bg-gradient-to-r from-amber-500/20 via-yellow-400/20 to-amber-500/10 border-amber-500 text-amber-900 dark:text-amber-200 font-bold shadow-md'
+                                            ? 'bg-gradient-to-r from-indigo-500/20 via-yellow-400/20 to-indigo-500/10 border-indigo-500 text-indigo-900 dark:text-indigo-200 font-bold shadow-md'
                                             : 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-400/60 text-emerald-600 dark:text-emerald-400'
                                     }`}>
                                         <div className="flex items-center gap-1.5 truncate">
                                             <span>{t('counter.makeInvoice.selectedLabel') || "Selected"}: <strong>{getCustomerDisplayName(selectedCustomerObj)}</strong> ({selectedCustomerObj.phone})</span>
                                         </div>
                                         {isSub && (
-                                            <span className="bg-amber-600 text-white font-extrabold text-[10px] px-2 py-0.5 rounded-md uppercase tracking-wider shrink-0 shadow animate-bounce">
+                                            <span className="bg-indigo-600 text-white font-extrabold text-[10px] px-2 py-0.5 rounded-md uppercase tracking-wider shrink-0 shadow animate-bounce">
                                                 ⭐ SUBSCRIBER / مشترك
                                             </span>
                                         )}
@@ -1848,7 +1848,7 @@ const MakeInvoice = () => {
                                                 if (removeCatalogMode) setRemoveCatalogMode(false);
                                                 setIsCatalogMenuOpen(false);
                                             }}
-                                            className={`w-full text-start px-3 py-2.5 text-xs hover:bg-surface-alt font-semibold flex items-center gap-2 transition-colors whitespace-nowrap ${editCatalogMode ? 'text-amber-600 bg-amber-50' : 'text-slate-600'}`}
+                                            className={`w-full text-start px-3 py-2.5 text-xs hover:bg-surface-alt font-semibold flex items-center gap-2 transition-colors whitespace-nowrap ${editCatalogMode ? 'text-indigo-600 bg-indigo-50' : 'text-slate-600'}`}
                                         >
                                             {editCatalogMode ? `✖ ${t('counter.makeInvoice.doneEditing')}` : `✏️ ${t('counter.makeInvoice.editCatalog')}`}
                                         </button>
@@ -1930,7 +1930,7 @@ const MakeInvoice = () => {
                                                 }
                                             }
                                         }}
-                                        className={`relative w-full h-auto min-h-[125px] flex flex-col items-center justify-between p-2.5 pb-2 border rounded-2xl transition-all duration-200 hover:scale-105 active:scale-95 shadow-sm hover:shadow-md ${styleCard} ${isRemovable ? 'ring-2 ring-rose-400 animate-pulse' : ''} ${isEditable ? 'ring-2 ring-amber-400 animate-pulse' : ''} ${draggedIdx === idx ? 'opacity-30 border-dashed border-slate-400 scale-95' : ''}`}
+                                        className={`relative w-full h-auto min-h-[125px] flex flex-col items-center justify-between p-2.5 pb-2 border rounded-2xl transition-all duration-200 hover:scale-105 active:scale-95 shadow-sm hover:shadow-md ${styleCard} ${isRemovable ? 'ring-2 ring-rose-400 animate-pulse' : ''} ${isEditable ? 'ring-2 ring-indigo-400 animate-pulse' : ''} ${draggedIdx === idx ? 'opacity-30 border-dashed border-slate-400 scale-95' : ''}`}
                                     >
                                         {/* Color dot indicator */}
                                         <span
@@ -1941,7 +1941,7 @@ const MakeInvoice = () => {
                                             <span className="absolute -top-1.5 -right-1.5 bg-rose-500 text-white text-[9px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow-md z-10">✖</span>
                                         )}
                                         {isEditable && (
-                                            <span className="absolute -top-1.5 -right-1.5 bg-amber-500 text-white text-[9px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow-md z-10">✏️</span>
+                                            <span className="absolute -top-1.5 -right-1.5 bg-indigo-500 text-white text-[9px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow-md z-10">✏️</span>
                                         )}
                                         {g.image ? (
                                             <img src={g.image} alt={g.name} className="w-16 h-16 object-cover rounded-xl mb-2 mt-1 shadow-sm border border-black/10" />
@@ -2495,7 +2495,7 @@ const MakeInvoice = () => {
                             {/* ── STEP: LINK ── */}
                             {paymentStep === 'link' && (
                                 <div className="space-y-4 mt-2">
-                                    <div className="flex flex-col items-center justify-center p-4 rounded-2xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
+                                    <div className="flex flex-col items-center justify-center p-4 rounded-2xl bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800">
                                         <span className="text-4xl mb-2">🔗</span>
                                         <p className="text-sm font-semibold text-primary">Pay with Link</p>
                                         <p className="text-xs text-secondary text-center mt-1">Fast, secure, 1-click checkout by Stripe.</p>
@@ -2504,7 +2504,7 @@ const MakeInvoice = () => {
                                         <label className="text-xs font-semibold text-secondary uppercase tracking-wider">Link Account Email</label>
                                         <input
                                             type="email"
-                                            className="mt-1 w-full rounded-xl border border-border bg-surface px-3 py-2 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-amber-400/40"
+                                            className="mt-1 w-full rounded-xl border border-border bg-surface px-3 py-2 text-sm text-primary focus:outline-none focus:ring-2 focus:ring-indigo-400/40"
                                             placeholder="e.g. user@example.com"
                                             value={linkForm.email}
                                             onChange={(e) => setLinkForm({ email: e.target.value })}
@@ -2999,7 +2999,7 @@ const MakeInvoice = () => {
                                                 key={opt}
                                                 type="button"
                                                 onClick={() => setModifierForm(p => ({...p, starch: opt}))}
-                                                className={`py-2 px-3 rounded-xl border-2 text-sm font-bold transition-all outline-none ${modifierForm.starch === opt ? 'bg-amber-500 border-amber-500 text-white shadow-md' : 'bg-surface-alt border-border text-secondary hover:border-slate-400 hover:text-primary'}`}
+                                                className={`py-2 px-3 rounded-xl border-2 text-sm font-bold transition-all outline-none ${modifierForm.starch === opt ? 'bg-indigo-500 border-indigo-500 text-white shadow-md' : 'bg-surface-alt border-border text-secondary hover:border-slate-400 hover:text-primary'}`}
                                             >
                                                 {opt}
                                             </button>

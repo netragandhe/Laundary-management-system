@@ -196,9 +196,9 @@ const PublicReceipt = () => {
             <span className="font-semibold text-gray-900">{order.customerName || 'N/A'}</span>
           </div>
           {order.isSubscriber && (
-            <div className="flex justify-between text-sm bg-amber-100 border border-amber-400 p-2 rounded-lg my-1 text-amber-900 font-extrabold">
+            <div className="flex justify-between text-sm bg-indigo-100 border border-indigo-400 p-2 rounded-lg my-1 text-indigo-900 font-extrabold">
               <span>Subscriber Status / الاشتراك:</span>
-              <span className="text-amber-800">⭐ SUBSCRIBER / مشترك</span>
+              <span className="text-indigo-800">⭐ SUBSCRIBER / مشترك</span>
             </div>
           )}
           <div className="flex justify-between text-sm">
@@ -219,7 +219,7 @@ const PublicReceipt = () => {
           </div>
           <div className="flex justify-between text-sm">
             <span className="font-bold text-gray-700">Status / الدفع:</span>
-            <span className={`font-semibold text-right ${order.paymentStatus === 'Paid' ? 'text-green-600' : 'text-orange-500'}`}>
+            <span className={`font-semibold text-right ${order.paymentStatus === 'Paid' ? 'text-green-600' : 'text-purple-500'}`}>
               {translatedPayment.en} <br/> <span dir="rtl" className="text-xs">{translatedPayment.ar}</span>
             </span>
           </div>

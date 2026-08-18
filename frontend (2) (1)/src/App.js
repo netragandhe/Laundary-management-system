@@ -55,7 +55,7 @@ import SuperAdminEditBranch from './Pages/superadmin/EditBranch';
 import SuperAdminReports from './Pages/superadmin/Reports';
 import SuperAdminSettings from './Pages/superadmin/Settings';
 import SuperAdminAuditLogs from './Pages/superadmin/AuditLogs';
-
+import SupportTickets from './Pages/superadmin/SupportTickets';
 import PublicReceipt from './Pages/Public/PublicReceipt';
 import LandingPage from './Pages/Landing/LandingPage';
 import BrochurePage from './Pages/Brochure/BrochurePage';
@@ -192,6 +192,8 @@ function App() {
           <Route path="audit-logs" element={<SuperAdminAuditLogs />} />
           <Route path="reports" element={<SuperAdminReports />} />
           <Route path="settings" element={<SuperAdminSettings />} />
+          <Route path="support" element={<SupportTickets />} />
+          <Route path="support-tickets" element={<SupportTickets />} />
         </Route>
       </Routes>
 

@@ -619,7 +619,7 @@ const Drivers = () => {
                       pillStyle = "bg-emerald-500/10 text-emerald-600 border-emerald-500/15";
                       statusLabel = tLocal.statusAvailable;
                     } else if (currentStatus === 'Assigned') {
-                      pillStyle = "bg-amber-500/10 text-amber-600 border-amber-500/15";
+                      pillStyle = "bg-indigo-500/10 text-indigo-600 border-indigo-500/15";
                       statusLabel = tLocal.statusAssigned;
                     } else if (currentStatus === 'On Delivery') {
                       pillStyle = "bg-blue-500/10 text-blue-600 border-blue-500/15";

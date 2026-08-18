@@ -165,7 +165,8 @@ router.post('/', authenticate, requirePermission('manage_staff'), async (req, re
 
     let finalUsername = username;
     if (!finalUsername && email) {
-      finalUsername = email.split('@')[0];
+      // Append random string to prevent username collisions from similar emails
+      finalUsername = email.split('@')[0] + '_' + Math.floor(Math.random() * 10000);
     }
 
     if (!name || !email || !finalUsername || !password || !roleName) {

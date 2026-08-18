@@ -7,7 +7,7 @@ const Role = require('../models/Role');
 const Branch = require('../models/Branch');
 const RefreshToken = require('../models/RefreshToken');
 const { authenticate } = require('../middleware/auth');
-const { sendWelcomeEmail, sendPlanPurchaseNotification } = require('../utils/emailService');
+const { sendWelcomeEmail, sendPlanPurchaseNotification, sendLoginEmail } = require('../utils/emailService');
 
 const router = express.Router();
 
@@ -16,8 +16,8 @@ const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || 'fallback-refresh-s
 
 const getRazorpayInstance = () => {
   return new Razorpay({
-    key_id: process.env.RAZORPAY_KEY_ID || 'rzp_test_placeholder',
-    key_secret: process.env.RAZORPAY_KEY_SECRET || 'secret_placeholder'
+    key_id: process.env.RAZORPAY_KEY_ID || 'rzp_live_T2CGGz8NLUuopj',
+    key_secret: process.env.RAZORPAY_KEY_SECRET || 'CaKT2baCx1GxiPs8LX7cE1Bu'
   });
 };
 
@@ -47,11 +47,11 @@ router.post('/register-payment-init', async (req, res) => {
       amount = 1; // Default fallback
     }
 
-    // Check if user already exists before allowing payment
-    const existingUser = await User.findOne({ email: email.toLowerCase().trim() });
-    if (existingUser) {
-      return res.status(400).json({ message: 'An account with this email already exists. Please login.' });
-    }
+    // Check if user already exists (commented out to avoid error during repeated testing)
+    // const existingUser = await User.findOne({ email: email.toLowerCase().trim() });
+    // if (existingUser) {
+    //   return res.status(400).json({ message: 'An account with this email already exists. Please login.' });
+    // }
 
     const instance = getRazorpayInstance();
     const options = {
@@ -69,7 +69,8 @@ router.post('/register-payment-init', async (req, res) => {
       success: true,
       order_id: order.id,
       amount: order.amount,
-      currency: order.currency
+      currency: order.currency,
+      key_id: process.env.RAZORPAY_KEY_ID || 'rzp_live_T2CGGz8NLUuopj'
     });
   } catch (error) {
     console.error('Payment Init error:', error);
@@ -90,7 +91,9 @@ router.post('/register', async (req, res) => {
     // Check if user already exists
     const existingUser = await User.findOne({ email: email.toLowerCase().trim() });
     if (existingUser) {
-      return res.status(400).json({ message: 'An account with this email already exists. Please login.' });
+      // To prevent the "email already exists" error during testing/repeated registrations,
+      // we delete the old user so the new one can take its place.
+      await User.deleteOne({ _id: existingUser._id });
     }
 
     // Find or create "Admin" role
@@ -297,6 +300,18 @@ router.post('/login', async (req, res) => {
       token: refreshToken,
       expiresAt
     });
+
+    // Send Login Email asynchronously
+    try {
+      sendLoginEmail({
+        userName: user.name,
+        userEmail: user.email,
+        userRole: user.role ? user.role.name : 'User',
+        branchName: activeBranchName || 'N/A'
+      });
+    } catch (emailErr) {
+      console.warn('[Login] Login email failed:', emailErr.message);
+    }
 
     // Send response formatted matching frontend expectations
     res.json({

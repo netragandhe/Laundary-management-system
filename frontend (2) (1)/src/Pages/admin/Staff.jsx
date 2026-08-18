@@ -18,7 +18,7 @@ const statusColors = {
 const roleColors = {
   Admin: 'bg-purple-500/10 text-purple-600 border-purple-500/15',
   'Counter Staff': 'bg-blue-500/10 text-blue-600 border-blue-500/15',
-  'Delivery Staff': 'bg-orange-500/10 text-orange-600 border-orange-500/15',
+  'Delivery Staff': 'bg-purple-500/10 text-purple-600 border-purple-500/15',
 };
 
 const Staff = () => {

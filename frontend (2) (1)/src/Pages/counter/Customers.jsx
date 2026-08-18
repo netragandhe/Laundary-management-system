@@ -626,9 +626,9 @@ const Customers = () => {
                       name="isSubscriber"
                       checked={!!formData.isSubscriber}
                       onChange={handleFormChange}
-                      className="w-4 h-4 text-amber-600 border-border rounded focus:ring-amber-500 cursor-pointer"
+                      className="w-4 h-4 text-indigo-600 border-border rounded focus:ring-indigo-500 cursor-pointer"
                     />
-                    <label htmlFor="isSubscriber" className="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase cursor-pointer select-none">
+                    <label htmlFor="isSubscriber" className="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase cursor-pointer select-none">
                       ⭐ Old Subscriber / مشترك
                     </label>
                   </div>

@@ -122,7 +122,7 @@ const getPermissionIcon = (id) => {
     case 'make_invoice':
       return <FiPlusCircle className="text-indigo-500 text-lg" />;
     case 'view_orders':
-      return <FiList className="text-orange-500 text-lg" />;
+      return <FiList className="text-purple-500 text-lg" />;
     case 'view_invoice_status':
       return <FiFileText className="text-purple-500 text-lg" />;
     case 'view_pickups':
@@ -138,7 +138,7 @@ const getPermissionIcon = (id) => {
     case 'manage_settings':
       return <FiSettings className="text-slate-500 text-lg" />;
     case 'view_payments':
-      return <FiCreditCard className="text-amber-500 text-lg" />;
+      return <FiCreditCard className="text-indigo-500 text-lg" />;
     case 'manage_branches':
       return <FiMapPin className="text-rose-500 text-lg" />;
     case 'view_services':
@@ -299,7 +299,7 @@ const RolesPermissions = () => {
       'bg-blue-500/10 text-blue-600 border-blue-500/15',
       'bg-indigo-500/10 text-indigo-600 border-indigo-500/15',
       'bg-pink-500/10 text-pink-600 border-pink-500/15',
-      'bg-amber-500/10 text-amber-600 border-amber-500/15',
+      'bg-indigo-500/10 text-indigo-600 border-indigo-500/15',
       'bg-cyan-500/10 text-cyan-600 border-cyan-500/15',
     ];
 

@@ -14,7 +14,7 @@ const paymentStatuses = ['Paid', 'Partial', 'Pending'];
 const paymentStatusColors = {
   Paid: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/15',
   Partial: 'bg-sky-500/10 text-sky-600 border-sky-500/15',
-  Pending: 'bg-amber-500/10 text-amber-600 border-amber-500/15',
+  Pending: 'bg-indigo-500/10 text-indigo-600 border-indigo-500/15',
 };
 
 const Payments = () => {
@@ -338,7 +338,7 @@ const Payments = () => {
           <div className="flex items-center justify-between gap-4 pb-6">
             <div>
               <div className="flex items-center gap-3">
-                <FiBell className="text-amber-600" />
+                <FiBell className="text-indigo-600" />
                 <h2 className="text-xl font-semibold text-primary">Outstanding Payments</h2>
               </div>
               <p className="mt-2 text-sm text-secondary">{duePayments.length} customers with due balances</p>
@@ -580,7 +580,7 @@ const Payments = () => {
               </div>
               <div>
                 <p className="text-xs uppercase tracking-[0.3em] text-secondary">Outstanding Balance</p>
-                <p className="mt-1 text-2xl font-bold text-amber-500">{formatCurrency(selectedCustomer.balance)}</p>
+                <p className="mt-1 text-2xl font-bold text-indigo-500">{formatCurrency(selectedCustomer.balance)}</p>
               </div>
               
               <div className="border-t border-border pt-4">

@@ -21,8 +21,8 @@ const Login = () => {
   return (
     <div className="login-page-wrapper">
       {/* Back to Landing Page Button */}
-      <Link to="/" className="login-back-btn">
-        <FiArrowLeft /> Back to Landing Page
+      <Link to="/" className="login-back-btn" title="Back to Landing Page">
+        <FiArrowLeft size={20} />
       </Link>
       {/* Dynamic Animated Blobs in the background */}
       <div className="bg-glow-blobs">

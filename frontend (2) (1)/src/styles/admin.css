@@ -13,26 +13,24 @@
 }
 
 .theme-light {
-  --bg: #faf5ff;
-  /* Very soft lavender background */
+  --bg: #faf5ff; /* Very soft lavender/white background */
   --surface: #ffffff;
-  --surface-alt: #faf5ff;
+  --surface-alt: #f8fafc;
   --surface-strong: #ffffff;
-  --surface-hover: #f3e8ff;
+  --surface-hover: #f1f5f9;
   --text-primary: #0f172a;
   --text-secondary: #334155;
-  --muted: #7c3aed;
-  --border: #f3e8ff;
-  --border-strong: #c4b5fd;
-  --accent: #8b5cf6;
-  /* Bright Purple */
-  --accent-soft: #faf5ff;
-  --accent-muted: #c4b5fd;
-  --shadow: 0 18px 50px rgba(139, 92, 246, 0.06);
-  --card-shadow: 0 1px 2px rgba(15, 23, 42, 0.02), 0 10px 28px rgba(139, 92, 246, 0.05);
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --accent: #6d28d9; /* Purple */
+  --accent-soft: rgba(109, 40, 217, 0.1);
+  --accent-muted: rgba(109, 40, 217, 0.3);
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   --glass: rgba(255, 255, 255, 0.88);
   --hero-gradient: linear-gradient(128deg, #ffffff 0%, #faf5ff 42%, #f3e8ff 100%);
-  --content-bg: linear-gradient(180deg, #faf5ff 0%, #fcfaff 100%);
+  --content-bg: #faf5ff;
 }
 
 /* Light mode custom scrollbars */
@@ -256,9 +254,13 @@ textarea:focus {
 }
 
 .glass-nav {
-  background: var(--glass);
-  border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
+}
+
+.admin-sidebar {
+  background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%) !important;
 }
 
 .icon-button {
@@ -522,13 +524,20 @@ textarea {
 
 .admin-sidebar {
   flex-shrink: 0;
-  width: 13.5rem;
+  width: 12rem;
   height: 100vh;
   max-height: 100vh;
   overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--border) var(--surface);
+  /* Hide scrollbar for cleaner look */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
+  border-right: none !important;
+  background: #060713 !important;
+}
+
+.admin-sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 @media (min-width: 1024px) {
@@ -560,18 +569,94 @@ textarea {
   box-shadow: var(--card-shadow);
 }
 
-.theme-light .glass-nav {
-  background: var(--glass);
-  border-bottom-color: var(--border);
-  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04);
+.theme-light .glass-nav,
+.theme-light .admin-sidebar {
+  background: #070714 !important;
+  border-bottom-color: rgba(139, 92, 246, 0.2) !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(16px) !important;
+  color: #ffffff !important;
+}
+
+.theme-light .glass-nav * {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.theme-light .glass-nav .bg-surface,
+.theme-light .glass-nav .bg-surface-alt,
+.theme-light .glass-nav .icon-button,
+.theme-light .glass-nav .theme-toggle,
+.theme-light .glass-nav .profile-dropdown-button {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Revert dropdowns in light mode glass nav to their normal state */
+.theme-light .glass-nav .nav-dropdown {
+  background-color: var(--surface) !important;
+}
+
+.theme-light .glass-nav .nav-dropdown * {
+  color: var(--text-primary) !important;
+  border-color: var(--border) !important;
+}
+
+.theme-light .glass-nav .nav-dropdown .text-secondary,
+.theme-light .glass-nav .nav-dropdown .text-secondary * {
+  color: var(--text-secondary) !important;
+}
+
+.theme-light .glass-nav .nav-dropdown .text-muted,
+.theme-light .glass-nav .nav-dropdown .text-muted * {
+  color: var(--muted) !important;
+}
+
+.theme-light .glass-nav .nav-dropdown .text-blue-500,
+.theme-light .glass-nav .nav-dropdown .text-blue-500 * {
+  color: #3b82f6 !important;
+}
+
+.theme-light .glass-nav .nav-dropdown .text-rose-500,
+.theme-light .glass-nav .nav-dropdown .text-rose-500 * {
+  color: #f43f5e !important;
+}
+
+.theme-light .glass-nav .nav-dropdown .bg-blue-50,
+.theme-light .glass-nav .nav-dropdown .bg-blue-100,
+.theme-light .glass-nav .nav-dropdown .bg-blue-50\/50 {
+  background-color: #eff6ff !important;
+}
+.theme-light .glass-nav .nav-dropdown .bg-blue-500 {
+  background-color: #3b82f6 !important;
+}
+.theme-light .glass-nav .nav-dropdown .bg-surface-alt {
+  background-color: var(--surface-alt) !important;
 }
 
 .theme-light .admin-sidebar {
-  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.95) 100%), url('../assets/sidebar-bg-light.png') !important;
-  background-size: cover !important;
-  background-position: center !important;
-  border-right: 1px solid var(--border);
-  box-shadow: 4px 0 24px rgba(15, 23, 42, 0.04);
+  background: #060713 !important;
+  border-right: none !important;
+  box-shadow: 4px 0 32px rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(16px) !important;
+  color: #ffffff !important;
+}
+
+.theme-light .admin-sidebar .text-secondary,
+.theme-light .admin-sidebar .text-primary,
+.theme-light .admin-sidebar span,
+.theme-light .admin-sidebar p,
+.theme-light .admin-sidebar a {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.theme-light .admin-sidebar .sidebar-nav-active {
+  background: rgba(139, 92, 246, 0.2) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(139, 92, 246, 0.4) !important;
+}
+
+.theme-light .admin-sidebar .sidebar-nav-active * {
+  color: #ffffff !important;
 }
 
 /* Sidebar navigation micro-animations */
@@ -1489,7 +1574,245 @@ div.flex>button.action-button {
 @media (max-width: 767px) {
 
   .Toastify,
+[dir="rtl"] .admin-sidebar {
+    left: auto !important;
+    right: 0 !important;
+  }
+
+  /* Hidden state: slide off-screen to the RIGHT */
+  [dir="rtl"] .admin-sidebar.rtl\:max-md\:translate-x-full,
+  [dir="rtl"] .admin-sidebar[class*="translate-x-full"] {
+    transform: translateX(100%) !important;
+  }
+
+  /* Open state: slide back in */
+  [dir="rtl"] .admin-sidebar[class*="translate-x-0"] {
+    transform: translateX(0) !important;
+  }
+}
+
+/* 3. Mobile logo in Navbar — flip margin */
+[dir="rtl"] .ltr\:ml-14 {
+  margin-left: 0 !important;
+  margin-right: 3.5rem !important;
+}
+
+/* 4. Sidebar hover animation — flip translateX direction */
+[dir="rtl"] .theme-light .admin-sidebar nav a:hover {
+  transform: translateX(-5px) !important;
+}
+
+/* 5. Light mode sidebar border — move from right to left in RTL */
+[dir="rtl"] .theme-light .admin-sidebar {
+  border-right: none;
+  border-left: 1px solid var(--border);
+}
+
+/* =============================================
+   Mobile Responsiveness Overrides (< 768px)
+   ============================================= */
+@media (max-width: 767px) {
+
+  /* 1. Make all header icons slightly smaller and smoother */
+  .icon-button {
+    height: 2.25rem !important;
+    width: 2.25rem !important;
+    border-radius: 0.75rem !important;
+  }
+
+  .icon-button svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  /* 2. Profile dropdown button: remove background, border, padding on mobile */
+  .profile-dropdown-button {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* Ensure the avatar stays exactly centered and circular inside its button */
+  .profile-avatar {
+    width: 2.25rem !important;
+    height: 2.25rem !important;
+    border-radius: 9999px !important;
+    font-size: 0.875rem !important;
+  }
+
+  /* 3. Language switcher inside dropdown size fix */
+  .lang-dropdown-menu,
+  .profile-dropdown-menu {
+    min-width: 14rem !important;
+  }
+}
+
+/* 4. RTL Profile dropdown alignment: keep inside viewport (avoid left overflow) */
+[dir="rtl"] .profile-dropdown-menu {
+  right: auto !important;
+  left: 0 !important;
+}
+
+[dir="rtl"] .profile-dropdown-menu::before {
+  right: auto !important;
+  left: 1.2rem !important;
+}
+
+/* Make Invoice — catalog menu (Add / Edit / Remove) visible in RTL */
+.catalog-menu-dropdown {
+  max-width: min(18rem, calc(100vw - 1.5rem));
+}
+
+[dir="rtl"] .catalog-menu-dropdown {
+  inset-inline-end: 0;
+  inset-inline-start: auto;
+}
+
+/* Slightly enlarge Make Invoice page usable working area */
+@media (min-width: 1024px) {
+  .admin-content:has(.make-invoice-container) {
+    padding: 0.6rem 0.8rem;
+  }
+}
+
+/* Custom sleek scrollbar for popups, modals, and lists */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.5);
+  border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(107, 114, 128, 0.8);
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+}
+
+/* Compact Page Headers (Dashboard Hero) to save vertical space */
+.dashboard-hero {
+  padding: 0.75rem 1.25rem !important;
+  /* Reduces vertical height significantly */
+}
+
+.dashboard-hero p:not(.uppercase) {
+  display: none !important;
+  /* Hides the large description subtitle */
+}
+
+#reports-print-area .dashboard-hero p:not(.uppercase) {
+  display: block !important;
+}
+
+.dashboard-hero h1 {
+  font-size: 1.35rem !important;
+  /* Reduces title size to 22px */
+  margin-top: 0.125rem !important;
+  line-height: 1.25 !important;
+}
+
+.dashboard-hero .dashboard-hero-pill {
+  padding: 0.4rem 0.8rem !important;
+  /* Makes header action buttons compact */
+  border-radius: 1rem !important;
+}
+
+.dashboard-hero .dashboard-hero-pill span,
+.dashboard-hero .dashboard-hero-pill svg {
+  font-size: 0.8rem !important;
+}
+
+/* Make general container vertical spaces smaller to fit content without scrolling */
+.space-y-8> :not([hidden])~ :not([hidden]) {
+  margin-top: 1rem !important;
+  /* Reduces spacing between components to 16px */
+}
+
+/* Make Export buttons compact and right-aligned */
+button.action-button[title*="Export"],
+button.action-button[title*="export"],
+div.flex>button.action-button {
+  width: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 1rem !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  margin-left: auto !important;
+  /* pushes to the right inside a flex container */
+}
+
+.theme-light table tbody tr.lcd-row:hover {
+  background: inherit !important;
+}
+
+.theme-dark table tbody tr.lcd-row:hover {
+  background: inherit !important;
+}
+
+/* Disable toast notifications on mobile to prevent header obstruction */
+@media (max-width: 767px) {
+
+  .Toastify,
   .Toastify__toast-container {
     display: none !important;
   }
+}
+.text-glow { text-shadow: 0 0 10px rgba(139, 92, 246, 0.4); }
+
+/* GLOBAL THEME GRADIENT (Purple to Cyan) */
+:root {
+  --theme-gradient: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
+}
+
+.glass-nav,
+.admin-sidebar {
+  background: #070714 !important;
+}
+
+.sidebar-nav-active {
+  background: var(--theme-gradient) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(6, 182, 212, 0.25) !important;
+}
+
+.sidebar-nav-active * {
+  color: #ffffff !important;
+}
+
+.btn-primary,
+.bg-blue-600,
+.bg-blue-500,
+.bg-indigo-600,
+.bg-indigo-500,
+button[type="submit"]:not(.bg-red-500):not(.bg-gray-500) {
+  background: var(--theme-gradient) !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+.btn-primary:hover,
+.bg-blue-600:hover,
+.bg-blue-500:hover,
+.bg-indigo-600:hover,
+.bg-indigo-500:hover,
+button[type="submit"]:hover:not(.bg-red-500):not(.bg-gray-500) {
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.4) !important;
+  transform: translateY(-1px);
 }
