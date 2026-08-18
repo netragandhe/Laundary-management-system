@@ -40,11 +40,11 @@ router.post('/register-payment-init', async (req, res) => {
     if (planName.includes('Free')) {
       return res.status(400).json({ message: 'Payment not required for Free Trial.' });
     } else if (planName.includes('Starter')) {
-      amount = 999;
+      amount = 1;
     } else if (planName.includes('Premium')) {
       amount = 2999;
     } else {
-      amount = 999; // Default fallback
+      amount = 1; // Default fallback
     }
 
     // Check if user already exists before allowing payment
@@ -171,7 +171,7 @@ router.post('/register', async (req, res) => {
         adminName: laundryName,
         adminEmail: email.toLowerCase().trim(),
         planName: plan,
-        planAmount: plan.includes('Free') ? 0 : plan.includes('Monthly') ? 999 : plan.includes('Yearly') ? 9999 : 0,
+        planAmount: plan.includes('Free') ? 0 : (plan.includes('Starter') || plan.includes('Monthly')) ? 1 : plan.includes('Yearly') ? 9999 : 1,
         planExpiry: expiry.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }),
         branchName: laundryName
       });

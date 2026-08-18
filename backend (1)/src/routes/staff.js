@@ -16,7 +16,7 @@ const formatUser = (user) => {
   const branchObjs = (user.branches && user.branches.length > 0)
     ? user.branches
     : (user.branch ? [user.branch] : []);
-  
+
   const branchNames = branchObjs.map(b => (typeof b === 'object' && b ? b.name : String(b))).filter(Boolean);
   const branchIdStrs = branchObjs.map(b => (typeof b === 'object' && b ? b._id.toString() : String(b))).filter(Boolean);
 
@@ -57,7 +57,7 @@ const formatUserWithStats = (user, orders, deliveries, pickups, payments) => {
     // Delivery Staff stats:
     // 1. Orders Handled = count of completed pickups
     ordersHandled = pickups.filter(p => p.assignedStaff === name && (p.status === 'Completed' || p.status === 'Picked Up')).length;
-    
+
     // 2. Deliveries Completed = count of delivered deliveries
     const completedDelvs = deliveries.filter(d => d.assignedStaff === name && d.status === 'Delivered');
     deliveriesCompleted = completedDelvs.length;
@@ -70,7 +70,7 @@ const formatUserWithStats = (user, orders, deliveries, pickups, payments) => {
     // Admin / Counter Staff stats:
     // 1. Orders Handled = count of orders created by this staff
     ordersHandled = orders.filter(o => o.createdBy === name || o.createdBy === username).length;
-    
+
     // 2. Deliveries Completed = 0
     deliveriesCompleted = 0;
 
@@ -83,7 +83,7 @@ const formatUserWithStats = (user, orders, deliveries, pickups, payments) => {
   const branchObjs = (user.branches && user.branches.length > 0)
     ? user.branches
     : (user.branch ? [user.branch] : []);
-  
+
   const branchNames = branchObjs.map(b => (typeof b === 'object' && b ? b.name : String(b))).filter(Boolean);
   const branchIdStrs = branchObjs.map(b => (typeof b === 'object' && b ? b._id.toString() : String(b))).filter(Boolean);
 
@@ -122,7 +122,7 @@ router.get('/', authenticate, requirePermission('manage_staff'), async (req, res
       // For Super Admin: filter out staff of deleted branches
       const branches = await Branch.find().select('_id');
       const branchIds = branches.map(b => b._id).filter(id => id && mongoose.Types.ObjectId.isValid(id));
-      
+
       const superAdminRole = await Role.findOne({ name: 'Super Admin' });
       const superAdminRoleId = superAdminRole ? superAdminRole._id : null;
 
@@ -197,14 +197,15 @@ router.post('/', authenticate, requirePermission('manage_staff'), async (req, re
       }
     }
 
-    // Check duplicate user scoped per branch
-    const duplicateQuery = { $or: [{ email }, { username: finalUsername }] };
-    if (validBranchObjectIds.length > 0) {
-      duplicateQuery.$or.push({ branch: { $in: validBranchObjectIds } }, { branches: { $in: validBranchObjectIds } });
-    }
-    const existingUser = await User.findOne(duplicateQuery);
+    // Check if user with same email or username already exists
+    const existingUser = await User.findOne({
+      $or: [
+        { email: email.toLowerCase().trim() },
+        { username: finalUsername.toLowerCase().trim() }
+      ]
+    });
     if (existingUser) {
-      return res.status(400).json({ message: 'A user with this email or username is already assigned.' });
+      return res.status(400).json({ message: 'A user with this email or username already exists.' });
     }
 
     const user = new User({
@@ -316,7 +317,7 @@ router.put('/:id', authenticate, requirePermission('manage_staff'), async (req, 
 router.put('/:id/lock', authenticate, requirePermission('manage_staff'), async (req, res) => {
   try {
     const { isLocked } = req.body;
-    
+
     const user = await User.findById(req.params.id);
     if (!user) {
       return res.status(404).json({ message: 'Staff member not found.' });
