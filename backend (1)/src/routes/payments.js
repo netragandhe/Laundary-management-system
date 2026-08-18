@@ -132,7 +132,8 @@ router.post('/', authenticate, requirePermission('manage_payments'), async (req,
       payment.branch || req.user.branch
     );
 
-    // Email notification to SuperAdmin
+    // Email notification to SuperAdmin disabled to prevent flooding everyday laundry payments
+    /*
     try {
       await sendPaymentNotification({
         adminName: req.user.name || 'Admin',
@@ -146,6 +147,7 @@ router.post('/', authenticate, requirePermission('manage_payments'), async (req,
     } catch (emailErr) {
       console.warn('[Payments] Email notification failed:', emailErr.message);
     }
+    */
 
     // Sync with order payment status, amountPaid, and customer balance
     if (payment.order && payment.status === 'Paid') {

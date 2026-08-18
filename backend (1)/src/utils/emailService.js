@@ -8,8 +8,8 @@ const transporter = nodemailer.createTransport({
   port: parseInt(process.env.EMAIL_PORT || '587'),
   secure: false, // STARTTLS on port 587
   auth: {
-    user: process.env.EMAIL_USER,   // your Brevo account email
-    pass: process.env.EMAIL_PASS    // Brevo SMTP API key (xkeysib-...)
+    user: process.env.BREVO_SENDER_EMAIL || process.env.EMAIL_USER,   // your Brevo account email
+    pass: process.env.BREVO_API_KEY || process.env.EMAIL_PASS    // Brevo SMTP API key (xkeysib-...)
   },
   tls: {
     rejectUnauthorized: false
@@ -21,27 +21,74 @@ const transporter = nodemailer.createTransport({
 // ─────────────────────────────────────────────
 const SUPERADMIN_EMAIL = process.env.SUPERADMIN_EMAIL || 'info@kiaantechnology.com';
 const SUPPORT_EMAIL    = process.env.SUPPORT_EMAIL    || 'support@kiaantechnology.com';
-const FROM_NAME        = 'Kiaan Technology – Laundry SaaS';
+const FROM_NAME        = process.env.BREVO_SENDER_NAME || 'Kiaan Technology Pvt Ltd';
 
 // ─────────────────────────────────────────────
 //  Core send helper
 // ─────────────────────────────────────────────
+const https = require('https');
+
 const sendEmail = async ({ to, subject, html, from }) => {
-  try {
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-      console.warn('[EmailService] EMAIL_USER / EMAIL_PASS not set. Skipping email.');
-      return;
+  return new Promise((resolve, reject) => {
+    try {
+      const user = (process.env.BREVO_SENDER_EMAIL || process.env.EMAIL_USER || '').replace(/"/g, '').trim();
+      let pass = (process.env.BREVO_API_KEY || process.env.EMAIL_PASS || '').replace(/"/g, '').trim();
+      
+      // Decrypt on the fly if encrypted key is used
+      if (process.env.BREVO_API_KEY_ENCRYPTED) {
+        pass = Buffer.from(process.env.BREVO_API_KEY_ENCRYPTED, 'base64').toString('utf-8').trim();
+      }
+      
+      const fromName = (FROM_NAME || '').replace(/"/g, '').trim();
+      
+      if (!user || !pass) {
+        console.warn('[EmailService] SMTP credentials not set. Skipping email.');
+        return resolve();
+      }
+
+      const data = JSON.stringify({
+        sender: { name: fromName, email: user },
+        to: [{ email: to }],
+        subject: subject,
+        htmlContent: html
+      });
+
+      const req = https.request({
+        hostname: 'api.brevo.com',
+        path: '/v3/smtp/email',
+        method: 'POST',
+        headers: {
+          'accept': 'application/json',
+          'api-key': pass,
+          'content-type': 'application/json',
+          'content-length': Buffer.byteLength(data)
+        }
+      }, (res) => {
+        let body = '';
+        res.on('data', (c) => body += c);
+        res.on('end', () => {
+          if (res.statusCode >= 200 && res.statusCode < 300) {
+            console.log(`[EmailService] Email sent → ${to} | Code: ${res.statusCode}`);
+            resolve(body);
+          } else {
+            console.error('[EmailService] API Error:', res.statusCode, body);
+            resolve(); // Don't crash the app
+          }
+        });
+      });
+
+      req.on('error', (e) => {
+        console.error('[EmailService] Failed to send email via API:', e.message);
+        resolve(); // Don't crash
+      });
+
+      req.write(data);
+      req.end();
+    } catch (err) {
+      console.error('[EmailService] Failed to send email:', err.message);
+      resolve();
     }
-    const info = await transporter.sendMail({
-      from: from || `"${FROM_NAME}" <${process.env.EMAIL_USER}>`,
-      to,
-      subject,
-      html
-    });
-    console.log(`[EmailService] Email sent → ${to} | MsgId: ${info.messageId}`);
-  } catch (err) {
-    console.error('[EmailService] Failed to send email:', err.message);
-  }
+  });
 };
 
 // ─────────────────────────────────────────────
@@ -441,6 +488,42 @@ const sendSupportTicketReply = async ({ ticketId, ticketSubject, replyMessage, u
 };
 
 // ─────────────────────────────────────────────
+//  7. Login Notification
+// ─────────────────────────────────────────────
+const sendLoginEmail = async ({ userName, userEmail, userRole, branchName }) => {
+  const subject = `🔐 New Login Detected – Kiaan Technology`;
+  const html = emailHeader('New Login Detected') + `
+    <h2 style="color:#1a1a2e;font-size:22px;margin:0 0 8px;">Security Alert: New Login 🔐</h2>
+    <p style="color:#5a6779;font-size:15px;line-height:1.7;margin:0 0 24px;">
+      Dear <strong>${userName}</strong>, a new login was just detected on your account.
+    </p>
+
+    <div style="background:#f0f4ff;border-left:4px solid #4a6cf7;border-radius:6px;padding:20px;margin-bottom:24px;">
+      <table cellpadding="0" cellspacing="0" style="width:100%">
+        <tr>
+          <td style="color:#8898aa;font-size:13px;padding:6px 0;width:120px;">Role</td>
+          <td style="color:#1a1a2e;font-size:13px;font-weight:600;">${userRole || 'User'}</td>
+        </tr>
+        <tr>
+          <td style="color:#8898aa;font-size:13px;padding:6px 0;">Branch</td>
+          <td style="color:#1a1a2e;font-size:13px;font-weight:600;">${branchName || 'N/A'}</td>
+        </tr>
+        <tr>
+          <td style="color:#8898aa;font-size:13px;padding:6px 0;">Time</td>
+          <td style="color:#1a1a2e;font-size:13px;font-weight:600;">${new Date().toLocaleString()}</td>
+        </tr>
+      </table>
+    </div>
+
+    <p style="color:#8898aa;font-size:13px;margin:0;">
+      If this was you, no further action is required. If you did not authorize this login, please contact support immediately or reset your password.
+    </p>
+  ` + emailFooter();
+
+  await sendEmail({ to: userEmail, subject, html });
+};
+
+// ─────────────────────────────────────────────
 //  Exports
 // ─────────────────────────────────────────────
 module.exports = {
@@ -450,5 +533,6 @@ module.exports = {
   sendPlanExpiryWarning,
   sendPaymentNotification,
   sendSupportTicketNotification,
-  sendSupportTicketReply
+  sendSupportTicketReply,
+  sendLoginEmail
 };

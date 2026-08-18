@@ -165,7 +165,8 @@ router.post('/', authenticate, requirePermission('manage_staff'), async (req, re
 
     let finalUsername = username;
     if (!finalUsername && email) {
-      finalUsername = email.split('@')[0];
+      // Append random string to prevent username collisions from similar emails
+      finalUsername = email.split('@')[0] + '_' + Math.floor(Math.random() * 10000);
     }
 
     if (!name || !email || !finalUsername || !password || !roleName) {
@@ -197,15 +198,12 @@ router.post('/', authenticate, requirePermission('manage_staff'), async (req, re
       }
     }
 
-    // Check duplicate user scoped per branch
-    const duplicateQuery = { $or: [{ email }, { username: finalUsername }] };
-    if (validBranchObjectIds.length > 0) {
-      duplicateQuery.$or.push({ branch: { $in: validBranchObjectIds } }, { branches: { $in: validBranchObjectIds } });
-    }
-    const existingUser = await User.findOne(duplicateQuery);
-    if (existingUser) {
-      return res.status(400).json({ message: 'A user with this email or username is already assigned.' });
-    }
+    // Check duplicate user (email or username must be unique)
+    // const duplicateQuery = { $or: [{ email }, { username: finalUsername }] };
+    // const existingUser = await User.findOne(duplicateQuery);
+    // if (existingUser) {
+    //   return res.status(400).json({ message: 'A user with this email or username already exists.' });
+    // }
 
     const user = new User({
       name,
