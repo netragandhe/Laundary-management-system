@@ -73,7 +73,6 @@ const LoginForm = () => {
   // Validation errors
   const [errors, setErrors] = useState({});
 
-  // Helper autofills for testing
   const testingAccounts = [
     { label: 'Super Admin', email: 'superadmin@tuhama.com', pass: 'admin123' },
     { label: 'Admin', email: 'patricia@tuhama.com', pass: 'admin123' },
@@ -86,10 +85,7 @@ const LoginForm = () => {
     setPassword(acc.pass);
     setErrors({});
 
-    if (acc.email === 'patricia@tuhama.com') {
-      const match = branchesList.find(b => b.name === 'Andalus');
-      if (match) setSelectedBranchId(match.id || match._id);
-    } else if (acc.email === 'kevin@tuhama.com' || acc.email === 'robert@tuhama.com') {
+    if (acc.email === 'kevin@tuhama.com' || acc.email === 'robert@tuhama.com') {
       const match = branchesList.find(b => b.name === 'Mishrif');
       if (match) setSelectedBranchId(match.id || match._id);
     }

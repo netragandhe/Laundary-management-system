@@ -1,18 +1,18 @@
 // src/components/StatsCard.jsx
 import React from 'react';
 
-const ACCENTS = ['blue', 'emerald', 'violet', 'amber', 'cyan', 'rose'];
+const ACCENTS = ['blue', 'emerald', 'violet', 'purple', 'cyan', 'rose'];
 
 const StatsCard = ({ icon, label, value, change, changePositive, accent }) => {
   const IconComponent = icon;
-  const changeColor = changePositive ? 'stats-change-positive text-emerald-400' : 'stats-change-negative text-rose-400';
+  const changeColor = changePositive ? 'stats-change-positive text-emerald-500' : 'stats-change-negative text-rose-500';
   const accentClass = accent && ACCENTS.includes(accent) ? `stats-card--${accent}` : '';
 
   return (
     <div
-      className={`stats-card surface-card flex items-center gap-3 p-3.5 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${accentClass}`}
+      className={`stats-card bg-white border border-border flex items-center gap-2.5 p-3 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${accentClass}`}
     >
-      <div className="stats-card-icon inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-300 shadow-inner">
+      <div className="stats-card-icon inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-purple-500/10 text-purple-600 shadow-inner">
         {IconComponent && <IconComponent size={20} />}
       </div>
       <div className="flex-1">

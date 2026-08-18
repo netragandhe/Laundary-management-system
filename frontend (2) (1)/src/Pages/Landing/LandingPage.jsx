@@ -117,7 +117,7 @@ const LandingPage = () => {
         }
 
         const options = {
-          key: 'rzp_live_T2', // User's provided Key ID
+          key: initRes.data.key_id || process.env.REACT_APP_RAZORPAY_KEY_ID || 'rzp_live_T2CGGz8NLUuopj',
           amount: initRes.data.amount,
           currency: initRes.data.currency,
           name: 'Kiaan Technology',
@@ -190,7 +190,7 @@ const LandingPage = () => {
         <div className="zealth-container">
           <div className="zealth-nav-wrapper">
             <Link to="/" className="zealth-brand">
-              <div className="zealth-logo-img-wrapper" style={{ width: '46px', height: '46px', padding: '4px', background: '#000000', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 18px rgba(245, 158, 11, 0.35)', border: '1px solid rgba(245, 158, 11, 0.3)' }}>
+              <div className="zealth-logo-img-wrapper" style={{ width: '46px', height: '46px', padding: '4px', background: '#070714', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 18px rgba(6, 182, 212, 0.35)', border: '1px solid rgba(6, 182, 212, 0.3)' }}>
                 <img src="/logo.png" alt="KT Logo" style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: '6px' }} />
               </div>
               <span className="zealth-brand-name">
@@ -210,14 +210,14 @@ const LandingPage = () => {
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
               <Link to="/login" className="zealth-btn-login">
-                Login <span>↗</span>
+                Login
               </Link>
               <button
                 type="button"
                 onClick={() => handleOpenPurchaseModal('7-Day Free Trial')}
                 className="zealth-btn-start-free"
               >
-                Start Free <span>↗</span>
+                Start Free
               </button>
               <button 
                 className="zealth-mobile-toggle" 
@@ -232,57 +232,69 @@ const LandingPage = () => {
       </header>
 
       {/* ================= HERO SECTION ================= */}
-      <section id="home" className="zealth-hero">
+      <section id="home" className="zealth-hero" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
         <div className="zealth-container">
-          {/* Top Pill Badge */}
-          <div className="zealth-hero-badge">
-            <span className="zealth-sparkle">✦</span> TUHAMA LAUNDRY MANAGEMENT PLATFORM
-          </div>
+          <div className="zealth-hero-grid" style={{ display: 'flex', flexWrap: 'wrap', gap: '4rem', alignItems: 'center' }}>
+            
+            {/* Left Content */}
+            <div className="zealth-hero-content" style={{ flex: '1 1 500px' }}>
+              <div className="zealth-hero-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 14px', borderRadius: '20px', backgroundColor: 'rgba(6, 182, 212, 0.1)', color: '#22d3ee', border: '1px solid rgba(6, 182, 212, 0.2)', fontWeight: '600', fontSize: '0.85rem', marginBottom: '1rem' }}>
+                ✦ #1 Laundry Management Software
+              </div>
 
-          {/* Main Title */}
-          <h1 className="zealth-hero-title">
-            Manage your laundry business with <br />
-            <span className="zealth-gradient-text">absolute precision.</span>
-          </h1>
+              <h1 className="zealth-hero-title" style={{ fontSize: '3.5rem', lineHeight: '1.1', fontWeight: '800', marginTop: '1rem', marginBottom: '1.5rem', color: '#fff' }}>
+                Transform Your <br />
+                <span className="zealth-gradient-text" style={{ background: 'linear-gradient(135deg, #67e8f9 0%, #a855f7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Laundry Business</span>
+              </h1>
 
-          {/* Hero Subtitle */}
-          <p className="zealth-hero-subtitle">
-            The premium, all-in-one laundry & dry cleaning management system for modern businesses. 
-            Effortlessly speed up order processing, track garments, manage multi-branch operations, and grow your revenue.
-          </p>
+              <p className="zealth-hero-subtitle" style={{ fontSize: '1.1rem', color: '#a1a1aa', maxWidth: '480px', marginBottom: '2.5rem', lineHeight: '1.6' }}>
+                The all-in-one solution for modern laundry and dry-cleaning centers. Automate operations, boost customer retention, and grow your business with our powerful management system.
+              </p>
+              
+              <div className="zealth-hero-buttons" style={{ display: 'flex', gap: '1rem', marginBottom: '3rem' }}>
+                <button className="zealth-btn-start-free" onClick={() => handleOpenPurchaseModal('Growth')} style={{ padding: '0.8rem 1.8rem', fontSize: '1rem' }}>
+                  Get Started Now <FiArrowRight />
+                </button>
+                <a href="#features" className="zealth-btn-login" style={{ padding: '0.8rem 1.8rem', fontSize: '1rem', borderColor: 'rgba(6, 182, 212, 0.3)' }}>
+                  View Demo
+                </a>
+              </div>
 
-          {/* Stats Counter Row */}
-          <div className="zealth-hero-stats">
-            <div className="zealth-stat-item">
-              <div className="zealth-stat-value">500+</div>
-              <div className="zealth-stat-label">Active Outlets</div>
+              {/* Stat Bubbles Row */}
+              <div className="zealth-hero-stats-row" style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+                  <div style={{ width: '50px', height: '50px', borderRadius: '50%', backgroundColor: 'rgba(6, 182, 212, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#22d3ee' }}><FiUsers size={24}/></div>
+                  <strong style={{ fontSize: '1.2rem', color: '#fff' }}>500+</strong>
+                  <span style={{ fontSize: '0.8rem', color: '#a1a1aa' }}>Happy Clients</span>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+                  <div style={{ width: '50px', height: '50px', borderRadius: '50%', backgroundColor: 'rgba(6, 182, 212, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#22d3ee' }}><FiMapPin size={24}/></div>
+                  <strong style={{ fontSize: '1.2rem', color: '#fff' }}>150+</strong>
+                  <span style={{ fontSize: '0.8rem', color: '#a1a1aa' }}>Active Branches</span>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+                  <div style={{ width: '50px', height: '50px', borderRadius: '50%', backgroundColor: 'rgba(6, 182, 212, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#22d3ee' }}><FiTrendingUp size={24}/></div>
+                  <strong style={{ fontSize: '1.2rem', color: '#fff' }}>99.9%</strong>
+                  <span style={{ fontSize: '0.8rem', color: '#a1a1aa' }}>Uptime</span>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+                  <div style={{ width: '50px', height: '50px', borderRadius: '50%', backgroundColor: 'rgba(6, 182, 212, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#22d3ee' }}><FiClock size={24}/></div>
+                  <strong style={{ fontSize: '1.2rem', color: '#fff' }}>24/7</strong>
+                  <span style={{ fontSize: '0.8rem', color: '#a1a1aa' }}>Support</span>
+                </div>
+              </div>
             </div>
-            <div className="zealth-stat-item">
-              <div className="zealth-stat-value">50M+</div>
-              <div className="zealth-stat-label">Garments Cleaned</div>
-            </div>
-            <div className="zealth-stat-item">
-              <div className="zealth-stat-value">99.9%</div>
-              <div className="zealth-stat-label">System Uptime</div>
-            </div>
-            <div className="zealth-stat-item">
-              <div className="zealth-stat-value">24/7</div>
-              <div className="zealth-stat-label">VIP Support</div>
-            </div>
-          </div>
 
-          {/* CTA Buttons */}
-          <div className="zealth-hero-cta">
-            <button 
-              type="button" 
-              onClick={() => handleOpenPurchaseModal('7-Day Free Trial')} 
-              className="zealth-btn-primary"
-            >
-              Start Free Trial <FiArrowRight />
-            </button>
-            <a href="#features" className="zealth-btn-secondary">
-              View Demo
-            </a>
+            {/* Right Image */}
+            <div className="zealth-hero-image-wrapper" style={{ flex: '1 1 500px', position: 'relative' }}>
+              <div style={{ padding: '6px', background: 'linear-gradient(135deg, rgba(6,182,212,0.4), rgba(6,182,212,0.05))', borderRadius: '24px', boxShadow: '0 20px 50px rgba(0,0,0,0.6), 0 0 50px rgba(6,182,212,0.15)' }}>
+                <img 
+                  src="https://images.unsplash.com/photo-1545173168-9f1947eebb7f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                  alt="Laundry Dashboard" 
+                  style={{ width: '100%', height: 'auto', borderRadius: '18px', display: 'block' }}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -291,7 +303,7 @@ const LandingPage = () => {
       <section id="portals" className="zealth-section" style={{ background: 'rgba(10, 12, 30, 0.6)', borderTop: '1px solid rgba(255, 255, 255, 0.05)', borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
         <div className="zealth-container">
           <div className="zealth-section-header">
-            <span className="zealth-section-badge">✦ ENTERPRISE ROLE-BASED ARCHITECTURE</span>
+            <span className="zealth-section-badge">âœ¦ ENTERPRISE ROLE-BASED ARCHITECTURE</span>
             <h2 className="zealth-section-title">
               4 Specialized Portals for <span className="zealth-gradient-text">Complete Operational Control</span>
             </h2>
@@ -302,11 +314,11 @@ const LandingPage = () => {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem', marginTop: '2.5rem' }}>
             {/* Portal 1: Super Admin */}
-            <div style={{ background: 'rgba(13, 14, 38, 0.9)', border: '1px solid rgba(168, 85, 247, 0.35)', borderRadius: '20px', padding: '1.8rem', position: 'relative', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)' }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(168, 85, 247, 0.15)', color: '#c084fc', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', marginBottom: '1.2rem', border: '1px solid rgba(168, 85, 247, 0.3)' }}>
-                👑
+            <div style={{ background: 'rgba(13, 14, 38, 0.9)', border: '1px solid rgba(6, 182, 212, 0.35)', borderRadius: '20px', padding: '1.8rem', position: 'relative', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)' }}>
+              <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(6, 182, 212, 0.15)', color: '#67e8f9', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', marginBottom: '1.2rem', border: '1px solid rgba(6, 182, 212, 0.3)' }}>
+                ðŸ‘‘
               </div>
-              <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#c084fc', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '0.4rem' }}>SUPER ADMIN PORTAL</div>
+              <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#67e8f9', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '0.4rem' }}>SUPER ADMIN PORTAL</div>
               <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.8rem' }}>Multi-Branch Command Center</h3>
               <p style={{ fontSize: '0.88rem', color: '#94a3b8', lineHeight: '1.6', marginBottom: '1.2rem' }}>
                 Centralized control across all laundry branches. Manage branch outlets, assign user permissions, track global revenue, and inspect live audit logs.
@@ -322,7 +334,7 @@ const LandingPage = () => {
             {/* Portal 2: Branch Manager */}
             <div style={{ background: 'rgba(13, 14, 38, 0.9)', border: '1px solid rgba(56, 189, 248, 0.35)', borderRadius: '20px', padding: '1.8rem', position: 'relative', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)' }}>
               <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', marginBottom: '1.2rem', border: '1px solid rgba(56, 189, 248, 0.3)' }}>
-                🏢
+                ðŸ¢
               </div>
               <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#38bdf8', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '0.4rem' }}>BRANCH ADMIN PORTAL</div>
               <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.8rem' }}>Outlet Operations Manager</h3>
@@ -338,11 +350,11 @@ const LandingPage = () => {
             </div>
 
             {/* Portal 3: Counter POS */}
-            <div style={{ background: 'rgba(13, 14, 38, 0.9)', border: '1px solid rgba(74, 222, 128, 0.35)', borderRadius: '20px', padding: '1.8rem', position: 'relative', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)' }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(74, 222, 128, 0.15)', color: '#4ade80', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', marginBottom: '1.2rem', border: '1px solid rgba(74, 222, 128, 0.3)' }}>
-                🏷️
+            <div style={{ background: 'rgba(13, 14, 38, 0.9)', border: '1px solid rgba(99, 102, 241, 0.35)', borderRadius: '20px', padding: '1.8rem', position: 'relative', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)' }}>
+              <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(99, 102, 241, 0.15)', color: '#818cf8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', marginBottom: '1.2rem', border: '1px solid rgba(99, 102, 241, 0.3)' }}>
+                ðŸ·ï¸
               </div>
-              <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#4ade80', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '0.4rem' }}>COUNTER POS SYSTEM</div>
+              <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#818cf8', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '0.4rem' }}>COUNTER POS SYSTEM</div>
               <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.8rem' }}>Fast Garment Intake & Tagging</h3>
               <p style={{ fontSize: '0.88rem', color: '#94a3b8', lineHeight: '1.6', marginBottom: '1.2rem' }}>
                 Ultra-fast 30-second customer order intake. Generate barcode thermal tags, send instant WhatsApp PDF bills, and record express turnaround requests.
@@ -357,10 +369,10 @@ const LandingPage = () => {
 
             {/* Portal 4: Driver Fleet App */}
             <div style={{ background: 'rgba(13, 14, 38, 0.9)', border: '1px solid rgba(244, 114, 182, 0.35)', borderRadius: '20px', padding: '1.8rem', position: 'relative', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)' }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(244, 114, 182, 0.15)', color: '#f472b6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', marginBottom: '1.2rem', border: '1px solid rgba(244, 114, 182, 0.3)' }}>
-                🚚
+              <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', marginBottom: '1.2rem', border: '1px solid rgba(56, 189, 248, 0.3)' }}>
+                ðŸšš
               </div>
-              <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#f472b6', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '0.4rem' }}>DRIVER FLEET APP</div>
+              <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#38bdf8', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '0.4rem' }}>DRIVER FLEET APP</div>
               <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.8rem' }}>Pickup & Delivery Dispatch</h3>
               <p style={{ fontSize: '0.88rem', color: '#94a3b8', lineHeight: '1.6', marginBottom: '1.2rem' }}>
                 Dedicated app for delivery drivers. Receive pickup requests, navigate live customer routes, verify deliveries via OTP, and collect Cash/UPI payments.
@@ -377,64 +389,104 @@ const LandingPage = () => {
       </section>
 
       {/* ================= FEATURES SECTION ================= */}
-      <section id="features" className="zealth-section">
+      <section id="features" className="zealth-section" style={{ backgroundColor: '#070714', padding: '80px 0' }}>
         <div className="zealth-container">
-          <div className="zealth-section-header">
-            <span className="zealth-section-badge">✦ POWERFUL FEATURES</span>
-            <h2 className="zealth-section-title">
-              Powerful tools for <span className="zealth-gradient-text">modern operations.</span>
+          <div className="zealth-section-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <span className="zealth-section-badge" style={{ color: '#22d3ee', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.85rem' }}>âœ¦ Powerful Features</span>
+            <h2 className="zealth-section-title" style={{ fontSize: '2.5rem', fontWeight: '700', marginTop: '1rem', color: '#fff' }}>
+              Everything You Need to <span style={{ color: '#22d3ee' }}>Manage Your Laundry</span>
             </h2>
-            <p className="zealth-section-desc">
-              Everything you need to scale your laundry & dry cleaning business. Built with a relentless focus on speed, reliability, and beautiful design for your entire team.
+            <p className="zealth-section-desc" style={{ color: '#a1a1aa', maxWidth: '600px', margin: '1rem auto 0' }}>
+              Comprehensive tools designed to scale operations and accelerate growth.
             </p>
           </div>
 
-          <div className="zealth-features-grid">
-            <div className="zealth-feature-card">
-              <div className="zealth-feature-icon"><FiLayers /></div>
-              <h3 className="zealth-feature-title">Garment & Order Management</h3>
-              <p className="zealth-feature-desc">
-                Management of clothes, status tracking from washing to ironing, barcoded garment tags, and express service workflows.
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
+            {/* Feature 1 */}
+            <div style={{ background: 'rgba(13, 14, 38, 0.7)', border: '1px solid rgba(6, 182, 212, 0.15)', borderRadius: '16px', padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', transition: 'transform 0.3s' }}>
+              <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(6, 182, 212, 0.15)', color: '#22d3ee', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
+                <FiLayers size={20} />
+              </div>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#fff', marginBottom: '0.8rem' }}>Order Management</h3>
+              <p style={{ fontSize: '0.9rem', color: '#a1a1aa', lineHeight: '1.5' }}>
+                Status tracking from washing to ironing, barcoded garment tags, and express workflows.
               </p>
             </div>
 
-            <div className="zealth-feature-card">
-              <div className="zealth-feature-icon"><FiCpu /></div>
-              <h3 className="zealth-feature-title">Counter POS & Order Creation</h3>
-              <p className="zealth-feature-desc">
-                Lightning-fast counter intake, garment item selection with visual icons, barcode scanning, and instant customer lookup.
+            {/* Feature 2 */}
+            <div style={{ background: 'rgba(13, 14, 38, 0.7)', border: '1px solid rgba(6, 182, 212, 0.15)', borderRadius: '16px', padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', transition: 'transform 0.3s' }}>
+              <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(6, 182, 212, 0.15)', color: '#22d3ee', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
+                <FiCpu size={20} />
+              </div>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#fff', marginBottom: '0.8rem' }}>Counter POS</h3>
+              <p style={{ fontSize: '0.9rem', color: '#a1a1aa', lineHeight: '1.5' }}>
+                Lightning-fast counter intake, visual item selection, and barcode scanning.
               </p>
             </div>
 
-            <div className="zealth-feature-card">
-              <div className="zealth-feature-icon"><FiFileText /></div>
-              <h3 className="zealth-feature-title">Billing & WhatsApp Invoices</h3>
-              <p className="zealth-feature-desc">
-                Instant electronic invoices, auto-sent WhatsApp receipts, UPI QR code collection, and thermal print tags.
+            {/* Feature 3 */}
+            <div style={{ background: 'rgba(13, 14, 38, 0.7)', border: '1px solid rgba(6, 182, 212, 0.15)', borderRadius: '16px', padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', transition: 'transform 0.3s' }}>
+              <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(6, 182, 212, 0.15)', color: '#22d3ee', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
+                <FiFileText size={20} />
+              </div>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#fff', marginBottom: '0.8rem' }}>WhatsApp Invoices</h3>
+              <p style={{ fontSize: '0.9rem', color: '#a1a1aa', lineHeight: '1.5' }}>
+                Instant electronic invoices, auto-sent WhatsApp receipts, and UPI QR collections.
               </p>
             </div>
 
-            <div className="zealth-feature-card">
-              <div className="zealth-feature-icon"><FiTrendingUp /></div>
-              <h3 className="zealth-feature-title">Reports & Live Analytics</h3>
-              <p className="zealth-feature-desc">
-                Deep operational metrics, revenue per service, branch comparison, garment category breakdown, and driver stats.
+            {/* Feature 4 */}
+            <div style={{ background: 'rgba(13, 14, 38, 0.7)', border: '1px solid rgba(6, 182, 212, 0.15)', borderRadius: '16px', padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', transition: 'transform 0.3s' }}>
+              <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(6, 182, 212, 0.15)', color: '#22d3ee', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
+                <FiTrendingUp size={20} />
+              </div>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#fff', marginBottom: '0.8rem' }}>Live Analytics</h3>
+              <p style={{ fontSize: '0.9rem', color: '#a1a1aa', lineHeight: '1.5' }}>
+                Deep operational metrics, revenue per service, and branch comparison.
               </p>
             </div>
 
-            <div className="zealth-feature-card">
-              <div className="zealth-feature-icon"><FiSmartphone /></div>
-              <h3 className="zealth-feature-title">Multi-Branch & Driver Fleet</h3>
-              <p className="zealth-feature-desc">
-                Manage multiple outlet stores seamlessly with central admin controls, driver pickup assignment, and live delivery routes.
+            {/* Feature 5 */}
+            <div style={{ background: 'rgba(13, 14, 38, 0.7)', border: '1px solid rgba(6, 182, 212, 0.15)', borderRadius: '16px', padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', transition: 'transform 0.3s' }}>
+              <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(6, 182, 212, 0.15)', color: '#22d3ee', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
+                <FiSmartphone size={20} />
+              </div>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#fff', marginBottom: '0.8rem' }}>Driver Fleet App</h3>
+              <p style={{ fontSize: '0.9rem', color: '#a1a1aa', lineHeight: '1.5' }}>
+                Manage driver pickup assignment, and live delivery routes easily.
               </p>
             </div>
 
-            <div className="zealth-feature-card">
-              <div className="zealth-feature-icon"><FiGlobe /></div>
-              <h3 className="zealth-feature-title">Customer Tracking Portal</h3>
-              <p className="zealth-feature-desc">
-                Empower your clients to check their laundry order status live, view itemized receipts, and request home pickup online.
+            {/* Feature 6 */}
+            <div style={{ background: 'rgba(13, 14, 38, 0.7)', border: '1px solid rgba(6, 182, 212, 0.15)', borderRadius: '16px', padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', transition: 'transform 0.3s' }}>
+              <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(6, 182, 212, 0.15)', color: '#22d3ee', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
+                <FiGlobe size={20} />
+              </div>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#fff', marginBottom: '0.8rem' }}>Customer Portal</h3>
+              <p style={{ fontSize: '0.9rem', color: '#a1a1aa', lineHeight: '1.5' }}>
+                Empower your clients to check their order status live, and view receipts.
+              </p>
+            </div>
+
+            {/* Feature 7 */}
+            <div style={{ background: 'rgba(13, 14, 38, 0.7)', border: '1px solid rgba(6, 182, 212, 0.15)', borderRadius: '16px', padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', transition: 'transform 0.3s' }}>
+              <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(6, 182, 212, 0.15)', color: '#22d3ee', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
+                <FiUsers size={20} />
+              </div>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#fff', marginBottom: '0.8rem' }}>Staff Management</h3>
+              <p style={{ fontSize: '0.9rem', color: '#a1a1aa', lineHeight: '1.5' }}>
+                Manage staff permissions, attendance, and role-based access control.
+              </p>
+            </div>
+
+            {/* Feature 8 */}
+            <div style={{ background: 'rgba(13, 14, 38, 0.7)', border: '1px solid rgba(6, 182, 212, 0.15)', borderRadius: '16px', padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', transition: 'transform 0.3s' }}>
+              <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(6, 182, 212, 0.15)', color: '#22d3ee', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
+                <FiCheck size={20} />
+              </div>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#fff', marginBottom: '0.8rem' }}>Multi-Branch Control</h3>
+              <p style={{ fontSize: '0.9rem', color: '#a1a1aa', lineHeight: '1.5' }}>
+                Centralized dashboard for multi-location performance tracking.
               </p>
             </div>
           </div>
@@ -442,79 +494,83 @@ const LandingPage = () => {
       </section>
 
       {/* ================= WHY STANDS OUT SECTION ================= */}
-      <section id="benefits" className="zealth-section">
+      <section id="benefits" className="zealth-section" style={{ padding: '80px 0' }}>
         <div className="zealth-container">
-          <div className="zealth-stands-out-grid">
-            <div>
-              <span className="zealth-section-badge">✦ WHY TUHAMA LAUNDRY</span>
-              <h2 className="zealth-section-title">
-                Why <span className="zealth-gradient-text">Tuhama Laundry</span> Stands Out
+          <div className="zealth-stands-out-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+            <div style={{ flex: '1' }}>
+              <span className="zealth-section-badge" style={{ color: '#22d3ee', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.85rem' }}>âœ¦ Why Tuhama Laundry</span>
+              <h2 className="zealth-section-title" style={{ fontSize: '2.5rem', fontWeight: '700', marginTop: '1rem', color: '#fff' }}>
+                Why <span style={{ color: '#22d3ee' }}>Tuhama Laundry</span> Stands Out
               </h2>
-              <p className="zealth-section-desc">
+              <p className="zealth-section-desc" style={{ color: '#a1a1aa', margin: '1rem 0 2rem' }}>
                 Our laundry management software is architected to reduce operational overhead, keep customers coming back, and scale your business effortlessly.
               </p>
 
-              <div className="zealth-benefits-list">
-                <div className="zealth-benefit-item">
-                  <div className="zealth-check-icon"><FiCheck /></div>
-                  <span>Increase customer retention by up to 45%</span>
+              <div className="zealth-benefits-list" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2.5rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div style={{ color: '#22d3ee' }}><FiCheck size={20} /></div>
+                  <span style={{ color: '#d4d4d8', fontSize: '0.95rem' }}>Increase customer retention by up to 45%</span>
                 </div>
-                <div className="zealth-benefit-item">
-                  <div className="zealth-check-icon"><FiCheck /></div>
-                  <span>Save 15+ hours per week on administrative tasks</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div style={{ color: '#22d3ee' }}><FiCheck size={20} /></div>
+                  <span style={{ color: '#d4d4d8', fontSize: '0.95rem' }}>Save 15+ hours per week on administrative tasks</span>
                 </div>
-                <div className="zealth-benefit-item">
-                  <div className="zealth-check-icon"><FiCheck /></div>
-                  <span>Track unlimited garments, products & branches</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div style={{ color: '#22d3ee' }}><FiCheck size={20} /></div>
+                  <span style={{ color: '#d4d4d8', fontSize: '0.95rem' }}>Track unlimited garments, products & branches</span>
                 </div>
-                <div className="zealth-benefit-item">
-                  <div className="zealth-check-icon"><FiCheck /></div>
-                  <span>Automated billing, invoicing & WhatsApp reminders</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div style={{ color: '#22d3ee' }}><FiCheck size={20} /></div>
+                  <span style={{ color: '#d4d4d8', fontSize: '0.95rem' }}>Automated billing, invoicing & WhatsApp reminders</span>
                 </div>
-                <div className="zealth-benefit-item">
-                  <div className="zealth-check-icon"><FiCheck /></div>
-                  <span>Enhanced customer experience with self-service receipt portal</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div style={{ color: '#22d3ee' }}><FiCheck size={20} /></div>
+                  <span style={{ color: '#d4d4d8', fontSize: '0.95rem' }}>Enhanced customer experience with self-service receipt portal</span>
                 </div>
-                <div className="zealth-benefit-item">
-                  <div className="zealth-check-icon"><FiCheck /></div>
-                  <span>Dedicated onboarding & 24/7 priority support</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div style={{ color: '#22d3ee' }}><FiCheck size={20} /></div>
+                  <span style={{ color: '#d4d4d8', fontSize: '0.95rem' }}>Dedicated onboarding & 24/7 priority support</span>
                 </div>
               </div>
 
               <button 
                 type="button" 
                 onClick={() => handleOpenPurchaseModal('7-Day Free Trial')} 
-                className="zealth-btn-primary"
+                className="zealth-btn-start-free"
+                style={{ padding: '0.8rem 1.8rem', fontSize: '1rem' }}
               >
                 See All Benefits <FiArrowRight />
               </button>
             </div>
 
-            <div className="zealth-stat-card-box">
-              <div className="zealth-stats-3col">
-                <div>
-                  <div className="zealth-stat-value">49%</div>
-                  <div className="zealth-stat-label">Lower Ops Costs</div>
+            <div className="zealth-stat-card-box" style={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+              <div className="zealth-stats-3col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', background: 'rgba(13, 14, 38, 0.7)', padding: '2rem', borderRadius: '20px', border: '1px solid rgba(6, 182, 212, 0.15)' }}>
+                <div style={{ textAlign: 'center' }}>
+                  <div style={{ color: '#22d3ee', marginBottom: '0.5rem' }}><FiTrendingUp size={24} style={{ margin: '0 auto' }}/></div>
+                  <div style={{ fontSize: '1.8rem', fontWeight: '800', color: '#fff' }}>49%</div>
+                  <div style={{ fontSize: '0.8rem', color: '#a1a1aa' }}>Lower Ops Costs</div>
                 </div>
-                <div>
-                  <div className="zealth-stat-value">15+</div>
-                  <div className="zealth-stat-label">Hours Saved / Wk</div>
+                <div style={{ textAlign: 'center' }}>
+                  <div style={{ color: '#22d3ee', marginBottom: '0.5rem' }}><FiClock size={24} style={{ margin: '0 auto' }}/></div>
+                  <div style={{ fontSize: '1.8rem', fontWeight: '800', color: '#fff' }}>15+</div>
+                  <div style={{ fontSize: '0.8rem', color: '#a1a1aa' }}>Hours Saved / Wk</div>
                 </div>
-                <div>
-                  <div className="zealth-stat-value">99.9%</div>
-                  <div className="zealth-stat-label">System Uptime</div>
+                <div style={{ textAlign: 'center' }}>
+                  <div style={{ color: '#22d3ee', marginBottom: '0.5rem' }}><FiShield size={24} style={{ margin: '0 auto' }}/></div>
+                  <div style={{ fontSize: '1.8rem', fontWeight: '800', color: '#fff' }}>99.9%</div>
+                  <div style={{ fontSize: '0.8rem', color: '#a1a1aa' }}>System Uptime</div>
                 </div>
               </div>
 
-              <div className="zealth-quote-box">
-                <p className="zealth-quote-text">
+              <div className="zealth-quote-box" style={{ background: 'rgba(6, 182, 212, 0.1)', padding: '2rem', borderRadius: '20px', borderLeft: '4px solid #a855f7' }}>
+                <p className="zealth-quote-text" style={{ fontSize: '1.1rem', fontStyle: 'italic', color: '#d4d4d8', marginBottom: '1.5rem', lineHeight: '1.6' }}>
                   "Tuhama Laundry Co. reduced our garment tracking errors to zero. Order intake is 3x faster, and automated WhatsApp billing keeps our customers delighted."
                 </p>
-                <div className="zealth-quote-author">
-                  <div className="zealth-avatar">DS</div>
+                <div className="zealth-quote-author" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                  <div className="zealth-avatar" style={{ width: '45px', height: '45px', borderRadius: '50%', background: '#a855f7', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold' }}>DS</div>
                   <div>
-                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '0.9rem' }}>Dr. Sanya Gupta</div>
-                    <div style={{ fontSize: '0.78rem', color: 'var(--z-text-muted)' }}>Head Operations, CleanCare Linen</div>
+                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '0.95rem' }}>Dr. Sanya Gupta</div>
+                    <div style={{ fontSize: '0.8rem', color: '#22d3ee' }}>Head Operations, CleanCare Linen</div>
                   </div>
                 </div>
               </div>
@@ -524,110 +580,258 @@ const LandingPage = () => {
       </section>
 
       {/* ================= TESTIMONIALS SECTION ================= */}
-      <section id="testimonials" className="zealth-section">
+      <section id="testimonials" className="zealth-section" style={{ backgroundColor: '#070714', padding: '80px 0' }}>
         <div className="zealth-container">
-          <div className="zealth-section-header">
-            <span className="zealth-section-badge">✦ CLIENT REVIEWS</span>
-            <h2 className="zealth-section-title">
-              What Our <span className="zealth-gradient-text">Clients Say</span>
+          <div className="zealth-section-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <span className="zealth-section-badge" style={{ color: '#22d3ee', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.85rem' }}>âœ¦ CLIENT REVIEWS</span>
+            <h2 className="zealth-section-title" style={{ fontSize: '2.5rem', fontWeight: '700', marginTop: '1rem', color: '#fff' }}>
+              What Our <span style={{ color: '#22d3ee' }}>Clients Say</span>
             </h2>
-            <p className="zealth-section-desc">
+            <p className="zealth-section-desc" style={{ color: '#a1a1aa', maxWidth: '600px', margin: '1rem auto 0' }}>
               Real reviews and feedback from clients around the world working with Kiaan Technology.
             </p>
           </div>
-
-          <div className="zealth-reviews-grid">
+          <div style={{ overflow: 'hidden', position: 'relative' }}>
+            <style>{`
+              @keyframes scrollReviews {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+              }
+              .zealth-reviews-marquee {
+                display: flex;
+                gap: 1rem;
+                animation: scrollReviews 25s linear infinite;
+                width: max-content;
+              }
+              .zealth-reviews-marquee:hover {
+                animation-play-state: paused;
+              }
+              .zealth-reviews-marquee > .zealth-review-card {
+                min-width: 260px;
+                max-width: 280px;
+                flex-shrink: 0;
+                padding: 1rem !important;
+                border-radius: 12px !important;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+              }
+              .zealth-reviews-marquee > .zealth-review-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 8px 30px rgba(6, 182, 212, 0.15);
+              }
+            `}</style>
+            <div className="zealth-reviews-marquee">
             {/* Real Review 1: hansdjabs */}
-            <div className="zealth-review-card">
+            <div className="zealth-review-card" style={{ background: 'rgba(13, 14, 38, 0.7)', border: '1px solid rgba(6, 182, 212, 0.15)', borderRadius: '12px', padding: '1rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <div>
-                <div className="zealth-review-header">
-                  <div className="zealth-avatar" style={{ background: '#10b981', color: '#ffffff', fontWeight: 800 }}>H</div>
+                <div className="zealth-review-header" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                  <div className="zealth-avatar" style={{ background: '#6366f1', color: '#ffffff', fontWeight: 800, width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>H</div>
                   <div>
-                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '1rem' }}>hansdjabs</div>
-                    <div style={{ fontSize: '0.8rem', color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                      🇷🇼 Rwanda
-                    </div>
+                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '0.88rem' }}>hansdjabs</div>
+                    <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Rwanda</div>
                   </div>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.8rem' }}>
-                  <div className="zealth-stars">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '0.6rem' }}>
+                  <div className="zealth-stars" style={{ color: '#22d3ee', display: 'flex', gap: '1px' }}>
                     <FiStar /><FiStar /><FiStar /><FiStar /><FiStar />
                   </div>
-                  <span style={{ fontSize: '0.8rem', color: '#94a3b8', fontWeight: 700 }}>5</span>
-                  <span style={{ fontSize: '0.78rem', color: '#64748b' }}>• 7 months ago</span>
+                  <span style={{ fontSize: '0.78rem', color: '#94a3b8', fontWeight: 700 }}>5</span>
+                  <span style={{ fontSize: '0.72rem', color: '#64748b' }}>• 7 months ago</span>
                 </div>
-                <p style={{ color: '#cbd5e1', fontSize: '0.92rem', lineHeight: '1.6' }}>
-                  "my experience working with this company is very great , i highly recommend everyone to work with this amazing team. because everything is smooth by working with them .. and they have expert in software development i can tell you .. whatever you have in mind they can build it with professionalism."
+                <p style={{ color: '#cbd5e1', fontSize: '0.82rem', lineHeight: '1.55' }}>
+                  "my experience working with this company is very great, i highly recommend everyone to work with this amazing team. everything is smooth and they have expert in software development."
                 </p>
               </div>
-              <div style={{ marginTop: '1.2rem', paddingTop: '0.8rem', borderTop: '1px solid rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.78rem', color: '#94a3b8' }}>
-                <span>12 days Duration</span>
-                <span style={{ background: 'rgba(139, 92, 246, 0.15)', color: '#00f2fe', padding: '0.2rem 0.6rem', borderRadius: '6px', border: '1px solid rgba(139, 92, 246, 0.25)' }}>
-                  Full Stack Web Applications
+              <div style={{ marginTop: '0.75rem', paddingTop: '0.6rem', borderTop: '1px solid rgba(6,182,212,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.72rem', color: '#94a3b8' }}>
+                <span>12 days</span>
+                <span style={{ background: 'rgba(6, 182, 212, 0.1)', color: '#22d3ee', padding: '0.15rem 0.5rem', borderRadius: '5px', border: '1px solid rgba(6, 182, 212, 0.25)' }}>
+                  Full Stack Web
                 </span>
               </div>
             </div>
 
             {/* Real Review 2: fahimhyder310 */}
-            <div className="zealth-review-card">
+            <div className="zealth-review-card" style={{ background: 'rgba(13, 14, 38, 0.7)', border: '1px solid rgba(6, 182, 212, 0.15)', borderRadius: '12px', padding: '1rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <div>
-                <div className="zealth-review-header">
-                  <div className="zealth-avatar" style={{ background: '#3b82f6', color: '#ffffff', fontWeight: 800 }}>F</div>
+                <div className="zealth-review-header" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                  <div className="zealth-avatar" style={{ background: '#3b82f6', color: '#ffffff', fontWeight: 800, width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>F</div>
                   <div>
-                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '1rem' }}>fahimhyder310</div>
-                    <div style={{ fontSize: '0.8rem', color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                      🇮🇳 India
-                    </div>
+                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '0.88rem' }}>fahimhyder310</div>
+                    <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>India</div>
                   </div>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.8rem' }}>
-                  <div className="zealth-stars">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '0.6rem' }}>
+                  <div className="zealth-stars" style={{ color: '#22d3ee', display: 'flex', gap: '1px' }}>
                     <FiStar /><FiStar /><FiStar /><FiStar /><FiStar />
                   </div>
-                  <span style={{ fontSize: '0.8rem', color: '#94a3b8', fontWeight: 700 }}>5</span>
-                  <span style={{ fontSize: '0.78rem', color: '#64748b' }}>• 5 months ago</span>
+                  <span style={{ fontSize: '0.78rem', color: '#94a3b8', fontWeight: 700 }}>5</span>
+                  <span style={{ fontSize: '0.72rem', color: '#64748b' }}>• 5 months ago</span>
                 </div>
-                <p style={{ color: '#cbd5e1', fontSize: '0.92rem', lineHeight: '1.6' }}>
-                  "They demonstrated strong command over both frontend and backend development, ensuring performance, security, and smooth functionality throughout the build. What stood out most was their deep understanding of the product vision. Their professionalism was consistent throughout the project. Milestones were delivered on time, communication was clear and structured, and they handled feedback with maturity and precision."
+                <p style={{ color: '#cbd5e1', fontSize: '0.82rem', lineHeight: '1.55' }}>
+                  "They demonstrated strong command over both frontend and backend development, ensuring performance, security, and smooth functionality. Milestones delivered on time, communication was clear and structured."
                 </p>
               </div>
-              <div style={{ marginTop: '1.2rem', paddingTop: '0.8rem', borderTop: '1px solid rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.78rem', color: '#94a3b8' }}>
-                <span>12 days Duration</span>
-                <span style={{ background: 'rgba(139, 92, 246, 0.15)', color: '#00f2fe', padding: '0.2rem 0.6rem', borderRadius: '6px', border: '1px solid rgba(139, 92, 246, 0.25)' }}>
-                  Full Stack Web Applications
+              <div style={{ marginTop: '0.75rem', paddingTop: '0.6rem', borderTop: '1px solid rgba(6,182,212,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.72rem', color: '#94a3b8' }}>
+                <span>9 days</span>
+                <span style={{ background: 'rgba(6, 182, 212, 0.1)', color: '#22d3ee', padding: '0.15rem 0.5rem', borderRadius: '5px', border: '1px solid rgba(6, 182, 212, 0.25)' }}>
+                  Full Stack Web
                 </span>
               </div>
             </div>
 
-            {/* Real Review 3: truman42lewis */}
-            <div className="zealth-review-card">
+            {/* Real Review 3: truman42lewis (4 months) */}
+            <div className="zealth-review-card" style={{ background: 'rgba(13, 14, 38, 0.7)', border: '1px solid rgba(6, 182, 212, 0.15)', borderRadius: '12px', padding: '1rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <div>
-                <div className="zealth-review-header">
-                  <div className="zealth-avatar" style={{ background: '#ec4899', color: '#ffffff', fontWeight: 800 }}>T</div>
+                <div className="zealth-review-header" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                  <div className="zealth-avatar" style={{ background: '#3b82f6', color: '#ffffff', fontWeight: 800, width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>T</div>
                   <div>
-                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '1rem' }}>truman42lewis</div>
-                    <div style={{ fontSize: '0.8rem', color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                      🇺🇸 United States
-                    </div>
+                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '0.88rem' }}>truman42lewis</div>
+                    <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>United States</div>
                   </div>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.8rem' }}>
-                  <div className="zealth-stars">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '0.6rem' }}>
+                  <div className="zealth-stars" style={{ color: '#22d3ee', display: 'flex', gap: '1px' }}>
                     <FiStar /><FiStar /><FiStar /><FiStar /><FiStar />
                   </div>
-                  <span style={{ fontSize: '0.8rem', color: '#94a3b8', fontWeight: 700 }}>5</span>
-                  <span style={{ fontSize: '0.78rem', color: '#64748b' }}>• 4 months ago</span>
+                  <span style={{ fontSize: '0.78rem', color: '#94a3b8', fontWeight: 700 }}>5</span>
+                  <span style={{ fontSize: '0.72rem', color: '#64748b' }}>• 4 months ago</span>
                 </div>
-                <p style={{ color: '#cbd5e1', fontSize: '0.92rem', lineHeight: '1.6' }}>
-                  "Kiaan And His Team are truly professional and In honored to work with them. As the have delivered our agency a state of the ark software! Thank you 🙏"
+                <p style={{ color: '#cbd5e1', fontSize: '0.82rem', lineHeight: '1.55' }}>
+                  "Kiaan And His Team are truly professional and I am honored to work with them. They delivered our agency a state of the art software! Thank you."
                 </p>
               </div>
-              <div style={{ marginTop: '1.2rem', paddingTop: '0.8rem', borderTop: '1px solid rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.78rem', color: '#94a3b8' }}>
-                <span>1 day Duration</span>
-                <span style={{ background: 'rgba(139, 92, 246, 0.15)', color: '#00f2fe', padding: '0.2rem 0.6rem', borderRadius: '6px', border: '1px solid rgba(139, 92, 246, 0.25)' }}>
-                  Full Stack Web Applications
+              <div style={{ marginTop: '0.75rem', paddingTop: '0.6rem', borderTop: '1px solid rgba(6,182,212,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.72rem', color: '#94a3b8' }}>
+                <span>1 day</span>
+                <span style={{ background: 'rgba(6, 182, 212, 0.1)', color: '#22d3ee', padding: '0.15rem 0.5rem', borderRadius: '5px', border: '1px solid rgba(6, 182, 212, 0.25)' }}>
+                  Full Stack Web
                 </span>
               </div>
+            </div>
+
+            {/* Real Review 4: truman42lewis (5 months) */}
+            <div className="zealth-review-card" style={{ background: 'rgba(13, 14, 38, 0.7)', border: '1px solid rgba(6, 182, 212, 0.15)', borderRadius: '12px', padding: '1rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div>
+                <div className="zealth-review-header" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                  <div className="zealth-avatar" style={{ background: '#06b6d4', color: '#ffffff', fontWeight: 800, width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>T</div>
+                  <div>
+                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '0.88rem' }}>truman42lewis</div>
+                    <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>United States</div>
+                  </div>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '0.6rem' }}>
+                  <div className="zealth-stars" style={{ color: '#22d3ee', display: 'flex', gap: '1px' }}>
+                    <FiStar /><FiStar /><FiStar /><FiStar /><FiStar />
+                  </div>
+                  <span style={{ fontSize: '0.78rem', color: '#94a3b8', fontWeight: 700 }}>5</span>
+                  <span style={{ fontSize: '0.72rem', color: '#64748b' }}>• 5 months ago</span>
+                </div>
+                <p style={{ color: '#cbd5e1', fontSize: '0.82rem', lineHeight: '1.55' }}>
+                  "Kiaan and his team showed up and handled business. Excellent work, professional, and on point. I highly recommend them."
+                </p>
+              </div>
+              <div style={{ marginTop: '0.75rem', paddingTop: '0.6rem', borderTop: '1px solid rgba(6,182,212,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.72rem', color: '#94a3b8' }}>
+                <span>5 days</span>
+                <span style={{ background: 'rgba(6, 182, 212, 0.1)', color: '#22d3ee', padding: '0.15rem 0.5rem', borderRadius: '5px', border: '1px solid rgba(6, 182, 212, 0.25)' }}>
+                  Full Stack Web
+                </span>
+              </div>
+            </div>
+
+            {/* DUPLICATE SET for seamless infinite loop */}
+            <div className="zealth-review-card" style={{ background: 'rgba(13, 14, 38, 0.7)', border: '1px solid rgba(6, 182, 212, 0.15)', borderRadius: '12px', padding: '1rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                  <div style={{ background: '#6366f1', color: '#fff', fontWeight: 800, width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>H</div>
+                  <div>
+                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '0.88rem' }}>hansdjabs</div>
+                    <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Rwanda</div>
+                  </div>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '0.6rem' }}>
+                  <div style={{ color: '#22d3ee', display: 'flex', gap: '1px' }}><FiStar /><FiStar /><FiStar /><FiStar /><FiStar /></div>
+                  <span style={{ fontSize: '0.78rem', color: '#94a3b8', fontWeight: 700 }}>5</span>
+                  <span style={{ fontSize: '0.72rem', color: '#64748b' }}>• 7 months ago</span>
+                </div>
+                <p style={{ color: '#cbd5e1', fontSize: '0.82rem', lineHeight: '1.55' }}>
+                  "my experience working with this company is very great, i highly recommend everyone to work with this amazing team. everything is smooth and they have expert in software development."
+                </p>
+              </div>
+              <div style={{ marginTop: '0.75rem', paddingTop: '0.6rem', borderTop: '1px solid rgba(6,182,212,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.72rem', color: '#94a3b8' }}>
+                <span>12 days</span>
+                <span style={{ background: 'rgba(6, 182, 212, 0.1)', color: '#22d3ee', padding: '0.15rem 0.5rem', borderRadius: '5px', border: '1px solid rgba(6, 182, 212, 0.25)' }}>Full Stack Web</span>
+              </div>
+            </div>
+
+            <div className="zealth-review-card" style={{ background: 'rgba(13, 14, 38, 0.7)', border: '1px solid rgba(6, 182, 212, 0.15)', borderRadius: '12px', padding: '1rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                  <div style={{ background: '#3b82f6', color: '#fff', fontWeight: 800, width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>F</div>
+                  <div>
+                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '0.88rem' }}>fahimhyder310</div>
+                    <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>India</div>
+                  </div>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '0.6rem' }}>
+                  <div style={{ color: '#22d3ee', display: 'flex', gap: '1px' }}><FiStar /><FiStar /><FiStar /><FiStar /><FiStar /></div>
+                  <span style={{ fontSize: '0.78rem', color: '#94a3b8', fontWeight: 700 }}>5</span>
+                  <span style={{ fontSize: '0.72rem', color: '#64748b' }}>• 5 months ago</span>
+                </div>
+                <p style={{ color: '#cbd5e1', fontSize: '0.82rem', lineHeight: '1.55' }}>
+                  "They demonstrated strong command over both frontend and backend development, ensuring performance, security, and smooth functionality. Milestones delivered on time."
+                </p>
+              </div>
+              <div style={{ marginTop: '0.75rem', paddingTop: '0.6rem', borderTop: '1px solid rgba(6,182,212,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.72rem', color: '#94a3b8' }}>
+                <span>9 days</span>
+                <span style={{ background: 'rgba(6, 182, 212, 0.1)', color: '#22d3ee', padding: '0.15rem 0.5rem', borderRadius: '5px', border: '1px solid rgba(6, 182, 212, 0.25)' }}>Full Stack Web</span>
+              </div>
+            </div>
+
+            <div className="zealth-review-card" style={{ background: 'rgba(13, 14, 38, 0.7)', border: '1px solid rgba(6, 182, 212, 0.15)', borderRadius: '12px', padding: '1rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                  <div style={{ background: '#3b82f6', color: '#fff', fontWeight: 800, width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>T</div>
+                  <div>
+                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '0.88rem' }}>truman42lewis</div>
+                    <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>United States</div>
+                  </div>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '0.6rem' }}>
+                  <div style={{ color: '#22d3ee', display: 'flex', gap: '1px' }}><FiStar /><FiStar /><FiStar /><FiStar /><FiStar /></div>
+                  <span style={{ fontSize: '0.78rem', color: '#94a3b8', fontWeight: 700 }}>5</span>
+                  <span style={{ fontSize: '0.72rem', color: '#64748b' }}>• 4 months ago</span>
+                </div>
+                <p style={{ color: '#cbd5e1', fontSize: '0.82rem', lineHeight: '1.55' }}>
+                  "Kiaan And His Team are truly professional and I am honored to work with them. They delivered our agency a state of the art software! Thank you."
+                </p>
+              </div>
+              <div style={{ marginTop: '0.75rem', paddingTop: '0.6rem', borderTop: '1px solid rgba(6,182,212,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.72rem', color: '#94a3b8' }}>
+                <span>1 day</span>
+                <span style={{ background: 'rgba(6, 182, 212, 0.1)', color: '#22d3ee', padding: '0.15rem 0.5rem', borderRadius: '5px', border: '1px solid rgba(6, 182, 212, 0.25)' }}>Full Stack Web</span>
+              </div>
+            </div>
+
+            <div className="zealth-review-card" style={{ background: 'rgba(13, 14, 38, 0.7)', border: '1px solid rgba(6, 182, 212, 0.15)', borderRadius: '12px', padding: '1rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                  <div style={{ background: '#06b6d4', color: '#fff', fontWeight: 800, width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>T</div>
+                  <div>
+                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '0.88rem' }}>truman42lewis</div>
+                    <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>United States</div>
+                  </div>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '0.6rem' }}>
+                  <div style={{ color: '#22d3ee', display: 'flex', gap: '1px' }}><FiStar /><FiStar /><FiStar /><FiStar /><FiStar /></div>
+                  <span style={{ fontSize: '0.78rem', color: '#94a3b8', fontWeight: 700 }}>5</span>
+                  <span style={{ fontSize: '0.72rem', color: '#64748b' }}>• 5 months ago</span>
+                </div>
+                <p style={{ color: '#cbd5e1', fontSize: '0.82rem', lineHeight: '1.55' }}>
+                  "Kiaan and his team showed up and handled business. Excellent work, professional, and on point. I highly recommend them."
+                </p>
+              </div>
+              <div style={{ marginTop: '0.75rem', paddingTop: '0.6rem', borderTop: '1px solid rgba(6,182,212,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.72rem', color: '#94a3b8' }}>
+                <span>5 days</span>
+                <span style={{ background: 'rgba(6, 182, 212, 0.1)', color: '#22d3ee', padding: '0.15rem 0.5rem', borderRadius: '5px', border: '1px solid rgba(6, 182, 212, 0.25)' }}>Full Stack Web</span>
+              </div>
+            </div>
             </div>
           </div>
         </div>
@@ -654,20 +858,20 @@ const LandingPage = () => {
                 <div className="zealth-price-amount">₹0 <span>/ week</span></div>
                 <p style={{ fontSize: '0.85rem', color: 'var(--z-text-muted)' }}>Perfect for testing single laundry outlet counter.</p>
                 <ul className="zealth-price-features">
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> Up to 50 Garment Orders</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> 3 Staff Accounts</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> 1 Laundry Branch</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> 1 Admin User</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> Order & Garment Management</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> Attendance (QR & Manual)</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> Payment & Invoicing</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> Expense Management</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> Up to 50 Garment Orders</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> 3 Staff Accounts</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> 1 Laundry Branch</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> 1 Admin User</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> Order & Garment Management</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> Attendance (QR & Manual)</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> Payment & Invoicing</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> Expense Management</li>
                 </ul>
               </div>
               <button 
                 type="button" 
                 onClick={() => handleOpenPurchaseModal('7-Day Free Trial')} 
-                className="zealth-price-btn"
+                className="zealth-btn-start-free" style={{ width: '100%', marginTop: '2rem' }}
               >
                 Activate Free Trial
               </button>
@@ -680,20 +884,20 @@ const LandingPage = () => {
                 <div className="zealth-price-amount">₹999 <span>/ month</span></div>
                 <p style={{ fontSize: '0.85rem', color: 'var(--z-text-muted)' }}>Great for single busy laundry outlet store.</p>
                 <ul className="zealth-price-features">
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> Up to 300 Garments / Month</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> 10 Staff Accounts</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> 1 Laundry Branch</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> 2 Admin Users</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> Garment & Order Management</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> Attendance (Manual Only)</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> Payment & Invoicing</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> Expense Management</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> Up to 300 Garments / Month</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> 10 Staff Accounts</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> 1 Laundry Branch</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> 2 Admin Users</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> Garment & Order Management</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> Attendance (Manual Only)</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> Payment & Invoicing</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> Expense Management</li>
                 </ul>
               </div>
               <button 
                 type="button" 
                 onClick={() => handleOpenPurchaseModal('Starter Plan (₹999/mo)')} 
-                className="zealth-price-btn"
+                className="zealth-btn-start-free" style={{ width: '100%', marginTop: '2rem' }}
               >
                 Select Starter Plan
               </button>
@@ -703,24 +907,24 @@ const LandingPage = () => {
             <div className="zealth-price-card popular">
               <div className="zealth-popular-badge">Most Popular</div>
               <div>
-                <div className="zealth-price-tier" style={{ color: '#c084fc' }}>Growth</div>
+                <div className="zealth-price-tier" style={{ color: '#22d3ee' }}>Growth</div>
                 <div className="zealth-price-amount">₹1,299 <span>/ month</span></div>
                 <p style={{ fontSize: '0.85rem', color: 'var(--z-text-muted)' }}>Complete suite for multi-branch operations.</p>
                 <ul className="zealth-price-features">
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> Up to 750 Garments / Month</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> 25 Staff Accounts</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> 2 Laundry Branches</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> 5 Admin Users</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> Order & Garment Management</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> Attendance (QR & Manual)</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> WhatsApp & SMS Receipts</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> Payment & Expense Analytics</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> Up to 750 Garments / Month</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> 25 Staff Accounts</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> 2 Laundry Branches</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> 5 Admin Users</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> Order & Garment Management</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> Attendance (QR & Manual)</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> WhatsApp & SMS Receipts</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> Payment & Expense Analytics</li>
                 </ul>
               </div>
               <button 
                 type="button" 
                 onClick={() => handleOpenPurchaseModal('Growth Plan (₹1,299/mo)')} 
-                className="zealth-price-btn"
+                className="zealth-btn-start-free" style={{ width: '100%', marginTop: '2rem' }}
               >
                 Select Growth Plan
               </button>
@@ -733,20 +937,20 @@ const LandingPage = () => {
                 <div className="zealth-price-amount">₹1,499 <span>/ month</span></div>
                 <p style={{ fontSize: '0.85rem', color: 'var(--z-text-muted)' }}>Custom solutions for large commercial networks.</p>
                 <ul className="zealth-price-features">
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> Up to 1,500 Garments / Month</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> 50 Staff Accounts</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> 5 Laundry Branches</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> 10 Admin Users</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> Garment & Order Management</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> Attendance (QR & Biometric)</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> Driver Fleet App</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> Dedicated Account Manager</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> Up to 1,500 Garments / Month</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> 50 Staff Accounts</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> 5 Laundry Branches</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> 10 Admin Users</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> Garment & Order Management</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> Attendance (QR & Biometric)</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> Driver Fleet App</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> Dedicated Account Manager</li>
                 </ul>
               </div>
               <button 
                 type="button" 
                 onClick={() => handleOpenPurchaseModal('Pro Plan (₹1,499/mo)')} 
-                className="zealth-price-btn"
+                className="zealth-btn-start-free" style={{ width: '100%', marginTop: '2rem' }}
               >
                 Select Pro Plan
               </button>
@@ -759,18 +963,18 @@ const LandingPage = () => {
                 <div className="zealth-price-amount">Custom</div>
                 <p style={{ fontSize: '0.85rem', color: 'var(--z-text-muted)' }}>Tailored software solution for your laundry network.</p>
                 <ul className="zealth-price-features">
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> SaaS with Customization</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> Personal / Custom Domain</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> Personal Branding & Logo</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> 🤖 AI Laundry & Automation</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> Custom POS & Hardware Sync</li>
-                  <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> Dedicated Server & 24/7 SLA</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> SaaS with Customization</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> Personal / Custom Domain</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> Personal Branding & Logo</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> 🤖 AI Laundry & Automation</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> Custom POS & Hardware Sync</li>
+                  <li className="zealth-price-feature"><FiCheck style={{ color: '#22d3ee' }} /> Dedicated Server & 24/7 SLA</li>
                 </ul>
               </div>
               <button 
                 type="button" 
                 onClick={() => handleOpenPurchaseModal('Custom Enterprise Plan')} 
-                className="zealth-price-btn"
+                className="zealth-btn-start-free" style={{ width: '100%', marginTop: '2rem' }}
               >
                 Get Started
               </button>
@@ -801,11 +1005,11 @@ const LandingPage = () => {
             {/* Column 1: Brand & Description */}
             <div>
               <Link to="/" className="zealth-brand" style={{ marginBottom: '1.2rem', display: 'inline-flex', alignItems: 'center', gap: '10px' }}>
-                <div style={{ width: '42px', height: '42px', padding: '4px', background: '#000000', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 18px rgba(168, 85, 247, 0.4)', border: '1px solid rgba(168, 85, 247, 0.3)' }}>
+                <div style={{ width: '42px', height: '42px', padding: '4px', background: '#070714', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 18px rgba(168, 85, 247, 0.4)', border: '1px solid rgba(6, 182, 212, 0.3)' }}>
                   <img src="/logo.png" alt="KT Logo" style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: '6px' }} />
                 </div>
                 <span style={{ fontSize: '1.35rem', fontWeight: '800', letterSpacing: '0.5px', color: '#ffffff' }}>
-                  KIAAN <span style={{ color: '#a855f7', fontWeight: '800' }}>TECHNOLOGY</span>
+                  KIAAN <span style={{ color: '#22d3ee', fontWeight: '800' }}>TECHNOLOGY</span>
                 </span>
               </Link>
               <p style={{ color: '#cbd5e1', fontSize: '0.9rem', maxWidth: '320px', lineHeight: 1.55, marginBottom: '1.5rem' }}>
@@ -851,7 +1055,7 @@ const LandingPage = () => {
                 </li>
                 <li>
                   <FiGlobe className="footer-contact-icon" />
-                  <a href="https://kiaantechnology.com/" target="_blank" rel="noopener noreferrer" style={{ color: '#00f2fe', textDecoration: 'none', fontWeight: '600' }}>kiaantechnology.com ↗</a>
+                  <a href="https://kiaantechnology.com/" target="_blank" rel="noopener noreferrer" style={{ color: '#22d3ee', textDecoration: 'none', fontWeight: '600' }}>kiaantechnology.com</a>
                 </li>
               </ul>
             </div>
@@ -864,7 +1068,7 @@ const LandingPage = () => {
                 &copy; {new Date().getFullYear()} Master Hub SaaS. All rights reserved.
               </div>
               <div style={{ color: '#ffffff', fontSize: '1.05rem', fontWeight: '800', letterSpacing: '0.3px' }}>
-                Powered by <a href="https://kiaantechnology.com/" target="_blank" rel="noopener noreferrer" style={{ color: '#00f2fe', textDecoration: 'none', fontWeight: '800' }}>Kiaan Technology</a>
+                Powered by <a href="https://kiaantechnology.com/" target="_blank" rel="noopener noreferrer" style={{ color: '#22d3ee', textDecoration: 'none', fontWeight: '800' }}>Kiaan Technology</a>
               </div>
             </div>
 
@@ -905,7 +1109,7 @@ const LandingPage = () => {
             </div>
 
             <div className="purchase-modal-body">
-              {/* ── SUCCESS SCREEN ── */}
+              {/* â”€â”€ SUCCESS SCREEN â”€â”€ */}
               {registerSuccess ? (
                 <div style={{ textAlign: 'center', padding: '2rem 1rem' }}>
                   <div style={{
@@ -915,21 +1119,21 @@ const LandingPage = () => {
                     margin: '0 auto 1.5rem',
                     boxShadow: '0 0 30px rgba(0, 200, 81, 0.4)'
                   }}>
-                    <span style={{ fontSize: '2.2rem' }}>✓</span>
+                    <span style={{ fontSize: '2.2rem' }}>âœ“</span>
                   </div>
                   <h3 style={{ color: '#ffffff', fontSize: '1.5rem', fontWeight: 700, margin: '0 0 0.75rem' }}>
-                    🎉 Registration Successful!
+                    ðŸŽ‰ Registration Successful!
                   </h3>
                   <p style={{ color: '#94a3b8', fontSize: '0.95rem', lineHeight: 1.7, margin: '0 0 0.5rem' }}>
                     Your account has been created for <strong style={{ color: '#fff' }}>{purchaseForm.laundryName}</strong>.
                   </p>
                   <p style={{ color: '#94a3b8', fontSize: '0.92rem', lineHeight: 1.6, margin: '0 0 2rem' }}>
-                    📧 A <strong style={{ color: '#00c851' }}>welcome email with your login credentials</strong> has been sent to<br />
+                    ðŸ“§ A <strong style={{ color: '#00c851' }}>welcome email with your login credentials</strong> has been sent to<br />
                     <strong style={{ color: '#00f2fe' }}>{purchaseForm.email}</strong>
                   </p>
                   <div style={{ background: 'rgba(0, 200, 81, 0.08)', border: '1px solid rgba(0, 200, 81, 0.25)', borderRadius: '10px', padding: '1rem', marginBottom: '1.5rem' }}>
                     <p style={{ color: '#94a3b8', fontSize: '0.85rem', margin: 0 }}>
-                      📋 Plan: <strong style={{ color: '#fff' }}>{selectedPlanName}</strong>
+                      ðŸ“‹ Plan: <strong style={{ color: '#fff' }}>{selectedPlanName}</strong>
                     </p>
                   </div>
                   <button
@@ -943,7 +1147,7 @@ const LandingPage = () => {
                       cursor: 'pointer', letterSpacing: '0.5px'
                     }}
                   >
-                    Go to Login →
+                    Go to Login â†’
                   </button>
                 </div>
               ) : (
@@ -1071,7 +1275,7 @@ const LandingPage = () => {
                     color: '#ff6b7a',
                     fontSize: '0.88rem'
                   }}>
-                    ⚠️ {registerError}
+                    âš ï¸ {registerError}
                   </div>
                 )}
 
@@ -1082,8 +1286,8 @@ const LandingPage = () => {
                   style={{ opacity: registerLoading ? 0.7 : 1, cursor: registerLoading ? 'not-allowed' : 'pointer' }}
                 >
                   {registerLoading
-                    ? '⏳ Creating your account...'
-                    : selectedPlanName.includes('Free') ? 'Activate Free Trial 🚀' : 'Proceed to Activate Plan 🚀'
+                    ? 'Creating your account...'
+                    : selectedPlanName.includes('Free') ? 'Activate Free Trial' : 'Proceed to Payment (Razorpay)'
                   }
                 </button>
               </form>
@@ -1187,7 +1391,7 @@ const LandingPage = () => {
 
                     <div>
                       <h4 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#00f2fe', marginBottom: '0.6rem' }}>10. International Data Transfers</h4>
-                      <p>Your information, including Personal Data, may be transferred to — and maintained on — computers located outside of your state or country where data protection laws may differ. By consenting to this policy, you agree to that transfer.</p>
+                      <p>Your information, including Personal Data, may be transferred to â€” and maintained on â€” computers located outside of your state or country where data protection laws may differ. By consenting to this policy, you agree to that transfer.</p>
                     </div>
 
                     <div>
@@ -1196,7 +1400,7 @@ const LandingPage = () => {
                     </div>
 
                     {/* Section 12: Contact Box */}
-                    <div style={{ background: 'rgba(20, 16, 38, 0.9)', border: '1px solid rgba(168, 85, 247, 0.35)', borderRadius: '16px', padding: '1.6rem 1.8rem', marginTop: '0.5rem' }}>
+                    <div style={{ background: 'rgba(20, 16, 38, 0.9)', border: '1px solid rgba(6, 182, 212, 0.35)', borderRadius: '16px', padding: '1.6rem 1.8rem', marginTop: '0.5rem' }}>
                       <h4 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.8rem' }}>12. Contact Information</h4>
                       <p style={{ marginBottom: '1rem', color: '#cbd5e1' }}>If you have any questions about this Privacy Policy, please contact us:</p>
                       
@@ -1249,7 +1453,7 @@ const LandingPage = () => {
                     </div>
 
                     {/* Section 7: Contact Box */}
-                    <div style={{ background: 'rgba(20, 16, 38, 0.9)', border: '1px solid rgba(168, 85, 247, 0.35)', borderRadius: '16px', padding: '1.6rem 1.8rem', marginTop: '0.5rem' }}>
+                    <div style={{ background: 'rgba(20, 16, 38, 0.9)', border: '1px solid rgba(6, 182, 212, 0.35)', borderRadius: '16px', padding: '1.6rem 1.8rem', marginTop: '0.5rem' }}>
                       <h4 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.8rem' }}>7. Contact Information</h4>
                       <p style={{ marginBottom: '1rem', color: '#cbd5e1' }}>For any queries regarding these Terms & Conditions, please reach out to us:</p>
                       

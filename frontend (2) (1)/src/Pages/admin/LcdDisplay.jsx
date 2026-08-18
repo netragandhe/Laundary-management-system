@@ -311,11 +311,11 @@ const LcdDisplay = () => {
                     break;
                   case 'Hold':
                     accentColor = isDark 
-                      ? 'border-amber-500/30 bg-amber-950/10 text-amber-400 shadow-amber-500/5' 
-                      : 'border-amber-200 bg-amber-50/60 text-amber-800 shadow-amber-100/50';
+                      ? 'border-indigo-500/30 bg-indigo-950/10 text-indigo-400 shadow-indigo-500/5' 
+                      : 'border-indigo-200 bg-indigo-50/60 text-indigo-800 shadow-indigo-100/50';
                     badgeColor = isDark 
-                      ? 'bg-amber-500/25 text-amber-300 border border-amber-500/30' 
-                      : 'bg-amber-100 text-amber-700 border border-amber-200';
+                      ? 'bg-indigo-500/25 text-indigo-300 border border-indigo-500/30' 
+                      : 'bg-indigo-100 text-indigo-700 border border-indigo-200';
                     break;
                   case 'Ready':
                     accentColor = isDark 
@@ -359,11 +359,11 @@ const LcdDisplay = () => {
                     break;
                   case 'Return':
                     accentColor = isDark 
-                      ? 'border-orange-500/30 bg-orange-950/10 text-orange-400 shadow-orange-500/5' 
-                      : 'border-orange-200 bg-orange-50/60 text-orange-800 shadow-orange-100/50';
+                      ? 'border-purple-500/30 bg-purple-950/10 text-purple-400 shadow-purple-500/5' 
+                      : 'border-purple-200 bg-purple-50/60 text-purple-800 shadow-purple-100/50';
                     badgeColor = isDark 
-                      ? 'bg-orange-500/25 text-orange-300 border border-orange-500/30' 
-                      : 'bg-orange-100 text-orange-700 border border-orange-200';
+                      ? 'bg-purple-500/25 text-purple-300 border border-purple-500/30' 
+                      : 'bg-purple-100 text-purple-700 border border-purple-200';
                     break;
                   case 'Store':
                     accentColor = isDark 
@@ -492,8 +492,8 @@ const LcdDisplay = () => {
                         break;
                       case 'Hold':
                         statusLabelClass = isDark 
-                          ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' 
-                          : 'bg-amber-50 text-amber-700 border-amber-200';
+                          ? 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20' 
+                          : 'bg-indigo-50 text-indigo-700 border-indigo-200';
                         break;
                       case 'Ready':
                         statusLabelClass = isDark 
@@ -522,8 +522,8 @@ const LcdDisplay = () => {
                         break;
                       case 'Return':
                         statusLabelClass = isDark 
-                          ? 'bg-orange-500/10 text-orange-400 border-orange-500/20' 
-                          : 'bg-orange-50 text-orange-700 border-orange-200';
+                          ? 'bg-purple-500/10 text-purple-400 border-purple-500/20' 
+                          : 'bg-purple-50 text-purple-700 border-purple-200';
                         break;
                       case 'Store':
                         statusLabelClass = isDark 

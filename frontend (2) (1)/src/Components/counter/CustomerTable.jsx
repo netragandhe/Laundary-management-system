@@ -15,7 +15,7 @@ const CustomerTable = ({ customers, onView, onEdit }) => {
           <div className="flex items-center gap-1.5">
             <span className="font-semibold text-primary">{row.name}</span>
             {isSub && (
-              <span className="text-amber-400 text-lg leading-none select-none drop-shadow" title="Subscriber">
+              <span className="text-indigo-400 text-lg leading-none select-none drop-shadow" title="Subscriber">
                 ⭐
               </span>
             )}

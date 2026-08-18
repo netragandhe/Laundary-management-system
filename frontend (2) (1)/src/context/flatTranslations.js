@@ -221,6 +221,8 @@ export const pageStrings = {
   'Profile Settings': 'إعدادات الملف الشخصي',
 
   // Reports
+  Support: 'الدعم',
+  Tickets: 'التذاكر',
   Reports: 'التقارير',
   'Daily Revenue': 'الإيرادات اليومية',
   'Orders Trend': 'اتجاه الطلبات',

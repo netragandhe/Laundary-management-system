@@ -19,7 +19,7 @@ const pickupStatusColors = {
 
 const deliveryStatusColors = {
   Scheduled: 'bg-sky-500/10 text-sky-600 border-sky-500/15',
-  'Out for Delivery': 'bg-amber-500/10 text-amber-600 border-amber-500/15',
+  'Out for Delivery': 'bg-indigo-500/10 text-indigo-600 border-indigo-500/15',
   Delivered: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/15',
   Failed: 'bg-rose-500/10 text-rose-600 border-rose-500/15',
 };
@@ -1694,7 +1694,7 @@ const PickupDelivery = () => {
                     if (!drv) return null;
                     const colors = {
                       'Available': 'bg-emerald-500/10 text-emerald-600 border-emerald-500/15',
-                      'Assigned': 'bg-amber-500/10 text-amber-600 border-amber-500/15',
+                      'Assigned': 'bg-indigo-500/10 text-indigo-600 border-indigo-500/15',
                       'On Delivery': 'bg-blue-500/10 text-blue-600 border-blue-500/15',
                       'Off Duty': 'bg-rose-500/10 text-rose-600 border-rose-500/15'
                     };
@@ -1829,7 +1829,7 @@ const PickupDelivery = () => {
                     if (!drv) return null;
                     const colors = {
                       'Available': 'bg-emerald-500/10 text-emerald-600 border-emerald-500/15',
-                      'Assigned': 'bg-amber-500/10 text-amber-600 border-amber-500/15',
+                      'Assigned': 'bg-indigo-500/10 text-indigo-600 border-indigo-500/15',
                       'On Delivery': 'bg-blue-500/10 text-blue-600 border-blue-500/15',
                       'Off Duty': 'bg-rose-500/10 text-rose-600 border-rose-500/15'
                     };
@@ -2020,7 +2020,7 @@ const PickupDelivery = () => {
                   if (!drv) return null;
                   const colors = {
                     'Available': 'bg-emerald-500/10 text-emerald-600 border-emerald-500/15',
-                    'Assigned': 'bg-amber-500/10 text-amber-600 border-amber-500/15',
+                    'Assigned': 'bg-indigo-500/10 text-indigo-600 border-indigo-500/15',
                     'On Delivery': 'bg-blue-500/10 text-blue-600 border-blue-500/15',
                     'Off Duty': 'bg-rose-500/10 text-rose-600 border-rose-500/15'
                   };
@@ -2132,7 +2132,7 @@ const PickupDelivery = () => {
                   if (!drv) return null;
                   const colors = {
                     'Available': 'bg-emerald-500/10 text-emerald-600 border-emerald-500/15',
-                    'Assigned': 'bg-amber-500/10 text-amber-600 border-amber-500/15',
+                    'Assigned': 'bg-indigo-500/10 text-indigo-600 border-indigo-500/15',
                     'On Delivery': 'bg-blue-500/10 text-blue-600 border-blue-500/15',
                     'Off Duty': 'bg-rose-500/10 text-rose-600 border-rose-500/15'
                   };

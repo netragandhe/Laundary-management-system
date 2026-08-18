@@ -140,24 +140,24 @@ const BrochurePage = () => {
 
             {/* Right Column: Software Dashboard & Mobile App Mockup Preview (Fills the blank space!) */}
             <div style={{ position: 'relative', background: 'rgba(13, 14, 38, 0.95)', border: '1px solid rgba(139, 92, 246, 0.35)', borderRadius: '24px', padding: '1rem', boxShadow: '0 25px 90px rgba(0, 0, 0, 0.8)' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '2.2fr 1fr', gap: '1rem', alignItems: 'center' }}>
+              <div style={{ position: 'relative', display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-start', paddingBottom: '1rem' }}>
                 {/* Laptop Screen View with User's Actual Dashboard Image */}
-                <div style={{ background: '#0a0a14', borderRadius: '14px', border: '1px solid rgba(139, 92, 246, 0.3)', overflow: 'hidden', boxShadow: '0 15px 40px rgba(0,0,0,0.6)' }}>
+                <div style={{ width: '85%', background: '#0a0a14', borderRadius: '14px', border: '1px solid rgba(139, 92, 246, 0.3)', overflow: 'hidden', boxShadow: '0 15px 40px rgba(0,0,0,0.6)', zIndex: 1 }}>
                   {/* Laptop Top Browser Header */}
-                  <div style={{ background: '#111326', padding: '0.5rem 0.8rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                      <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444' }}></div>
-                      <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f59e0b' }}></div>
-                      <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }}></div>
+                  <div style={{ background: '#111326', padding: '0.6rem 1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#ef4444' }}></div>
+                      <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#f59e0b' }}></div>
+                      <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#10b981' }}></div>
                     </div>
-                    <div style={{ fontSize: '0.7rem', color: '#94a3b8', background: 'rgba(255,255,255,0.05)', padding: '0.15rem 0.6rem', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.08)', width: '60%', textAlign: 'center', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    <div style={{ fontSize: '0.75rem', color: '#94a3b8', background: 'rgba(255,255,255,0.05)', padding: '0.2rem 0.8rem', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.08)', width: '60%', textAlign: 'center', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                       https://laundry.kiaantechnology.com/superadmin/dashboard
                     </div>
-                    <div style={{ fontSize: '0.7rem', color: '#00f2fe', fontWeight: 800 }}>LIVE DEMO</div>
+                    <div style={{ fontSize: '0.75rem', color: '#00f2fe', fontWeight: 800 }}>LIVE DEMO</div>
                   </div>
 
                   {/* Dashboard Image */}
-                  <div style={{ position: 'relative', overflow: 'hidden', maxHeight: '360px' }}>
+                  <div style={{ position: 'relative', overflow: 'hidden', maxHeight: '420px' }}>
                     <img 
                       src="/dashboard_preview.png" 
                       alt="Tuhama Laundry Super Admin Dashboard" 
@@ -166,18 +166,26 @@ const BrochurePage = () => {
                   </div>
                 </div>
 
-                {/* Mobile App View */}
-                <div style={{ background: '#08091a', borderRadius: '20px', padding: '1rem 0.8rem', border: '2px solid rgba(139, 92, 246, 0.4)', textAlign: 'left', boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)' }}>
-                  <div style={{ fontSize: '0.7rem', color: '#00f2fe', fontWeight: 800, marginBottom: '0.4rem', letterSpacing: '0.5px' }}>DRIVER & COUNTER APP</div>
-                  <div style={{ fontSize: '0.95rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.6rem' }}>Super Admin Portal 👋</div>
-                  <div style={{ background: 'rgba(139, 92, 246, 0.15)', padding: '0.7rem', borderRadius: '10px', border: '1px solid rgba(139, 92, 246, 0.3)', marginBottom: '0.6rem' }}>
-                    <div style={{ fontSize: '0.7rem', color: '#94a3b8' }}>Total Branches</div>
-                    <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#ffffff' }}>8 Outlets</div>
+                {/* Mobile App View (Overlaid) */}
+                <div style={{ position: 'absolute', right: '0%', bottom: '-15px', width: '260px', background: '#08091a', borderRadius: '34px', padding: '1.2rem 1rem 2.5rem', border: '8px solid #1e1e2f', textAlign: 'left', boxShadow: '-15px 25px 60px rgba(0, 0, 0, 0.95), inset 0 0 0 1px rgba(139, 92, 246, 0.3)', zIndex: 2 }}>
+                  {/* Mobile Notch / Speaker */}
+                  <div style={{ width: '60px', height: '6px', background: '#1e1e2f', borderRadius: '10px', margin: '0 auto 1.2rem' }}></div>
+                  
+                  <div style={{ fontSize: '0.7rem', color: '#00f2fe', fontWeight: 800, marginBottom: '0.5rem', letterSpacing: '0.5px', textAlign: 'center' }}>DRIVER & COUNTER APP</div>
+                  <div style={{ fontSize: '1rem', fontWeight: 800, color: '#ffffff', marginBottom: '1.2rem', textAlign: 'center' }}>Super Admin Portal 👋</div>
+                  
+                  <div style={{ background: 'rgba(139, 92, 246, 0.15)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(139, 92, 246, 0.3)', marginBottom: '0.8rem' }}>
+                    <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Total Branches</div>
+                    <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#ffffff' }}>8 Outlets</div>
                   </div>
-                  <div style={{ background: 'rgba(255, 255, 255, 0.03)', padding: '0.7rem', borderRadius: '10px', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                    <div style={{ fontSize: '0.7rem', color: '#94a3b8' }}>Active Users</div>
-                    <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#4ade80' }}>11 Users</div>
+                  
+                  <div style={{ background: 'rgba(255, 255, 255, 0.03)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                    <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Active Users</div>
+                    <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#4ade80' }}>11 Users</div>
                   </div>
+
+                  {/* Mobile Home Indicator */}
+                  <div style={{ width: '35%', height: '4px', background: 'rgba(255,255,255,0.3)', borderRadius: '10px', position: 'absolute', bottom: '12px', left: '50%', transform: 'translateX(-50%)' }}></div>
                 </div>
               </div>
             </div>

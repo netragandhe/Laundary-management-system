@@ -142,17 +142,17 @@ const DashboardOverview = () => {
   ];
 
   return (
-    <div className="space-y-8 admin-dashboard-page">
+    <div className="space-y-5 admin-dashboard-page">
       {/* Hero */}
       <section className="surface-card rounded-3xl border border-border shadow-xl">
-        <div className="dashboard-hero rounded-3xl p-8 md:p-10">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div className="dashboard-hero rounded-3xl p-5 md:p-6">
+          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
             <div>
               <p className="text-sm uppercase tracking-[0.3em] text-purple-500">Business Owner Portal</p>
-              <h1 className="mt-3 text-3xl font-semibold text-primary">
+              <h1 className="mt-1 text-3xl font-semibold text-primary">
                 <TypingText text="Super Admin Dashboard" />
               </h1>
-              <p className="mt-2 max-w-2xl text-sm text-secondary">
+              <p className="mt-1 max-w-2xl text-sm text-secondary">
                 High-level overview of your laundry business — branches, users, and revenue at a glance.
               </p>
             </div>
@@ -161,7 +161,7 @@ const DashboardOverview = () => {
       </section>
 
       {/* KPI Cards */}
-      <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-5">
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
         <StatsCard accent="blue"    icon={FiMapPin}      label="Total Branches"   value={totalBranches}  changePositive />
         <StatsCard accent="violet"  icon={FiUsers}       label="Total Users"      value={totalUsers}     changePositive />
         <StatsCard accent="cyan"    icon={FiShield}      label="Total Admins"     value={totalAdmins}    changePositive />
@@ -170,10 +170,10 @@ const DashboardOverview = () => {
       </div>
 
       {/* Tables */}
-      <div className="grid gap-6 xl:grid-cols-2">
+      <div className="grid gap-5 xl:grid-cols-2">
         {/* Recent Activity */}
-        <section className="surface-card p-6 shadow-xl rounded-3xl border border-border">
-          <div className="mb-6">
+        <section className="surface-card p-5 shadow-xl rounded-3xl border border-border">
+          <div className="mb-4">
             <h2 className="text-xl font-semibold text-primary flex items-center gap-2">
               <FiActivity className="text-purple-500" /> Recent Activity
             </h2>
@@ -183,8 +183,8 @@ const DashboardOverview = () => {
         </section>
 
         {/* Branch Summary */}
-        <section className="surface-card p-6 shadow-xl rounded-3xl border border-border">
-          <div className="mb-6">
+        <section className="surface-card p-5 shadow-xl rounded-3xl border border-border">
+          <div className="mb-4">
             <h2 className="text-xl font-semibold text-primary flex items-center gap-2">
               <FiMapPin className="text-blue-500" /> Branch Summary
             </h2>
