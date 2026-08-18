@@ -38,7 +38,7 @@ const SuperAdminSidebar = () => {
   const handleLogout = () => {
     localStorage.removeItem('user');
     toast.success(t('nav.logoutSuccess') || 'Logged out successfully');
-    navigate('/');
+    navigate('/login');
   };
 
   return (

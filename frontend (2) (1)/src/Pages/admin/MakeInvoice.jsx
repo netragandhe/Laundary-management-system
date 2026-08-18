@@ -660,6 +660,8 @@ const MakeInvoice = () => {
     const [cardForm, setCardForm] = useState({ name: '', number: '', expiry: '', cvv: '' });
     const [linkForm, setLinkForm] = useState({ email: '' });
     const [wamtForm, setWamtForm] = useState({ mobile: '' });
+    const [upiForm, setUpiForm] = useState({ upiId: '', refNo: '' });
+    const [bankForm, setBankForm] = useState({ bankName: '', utrNo: '' });
 
     // Modifiers State
     const [selectedGarmentForModifier, setSelectedGarmentForModifier] = useState(null);
@@ -765,7 +767,7 @@ const MakeInvoice = () => {
             )
         );
 
-        if (method === 'Cash' || isPrintFlow) {
+        if (method === 'Cash' || method === 'UPI' || method === 'Bank Transfer' || isPrintFlow) {
             generateInvoicePDF(newOrder);
         }
 
@@ -2307,6 +2309,8 @@ const MakeInvoice = () => {
                                     {paymentStep === 'card' && `💳 ${t('counter.makeInvoice.cardPayment')}`}
                                     {paymentStep === 'link' && `🔗 ${t('counter.makeInvoice.linkPayment')}`}
                                     {paymentStep === 'wamt' && `💰 ${t('counter.makeInvoice.creditPayment')}`}
+                                    {paymentStep === 'upi' && `📱 UPI Payment`}
+                                    {paymentStep === 'bank' && `🏦 Bank Transfer`}
                                 </h2>
                                 <button
                                     onClick={() => { setShowSettleModal(false); setPaymentStep('select'); }}
@@ -2405,22 +2409,21 @@ const MakeInvoice = () => {
                                         </div>
                                     )}
 
-                                    <div className="grid grid-cols-2 gap-3">
+                                    <div className="grid grid-cols-3 gap-2.5">
                                         {[
-                                        { method: t('counter.makeInvoice.paymentCash'), icon: '💵', bg: 'linear-gradient(135deg,#059669,#10b981)', shadow: 'rgba(16,185,129,0.4)', step: null, payMethod: 'Cash' },
-                                        { method: t('counter.makeInvoice.paymentCard'), icon: '💳', bg: 'linear-gradient(135deg,#3b82f6,#4f46e5)', shadow: 'rgba(59,130,246,0.4)', step: 'card', payMethod: 'Card' },
-                                        { method: t('counter.makeInvoice.paymentLink'), icon: '🔗', bg: 'linear-gradient(135deg,#f59e0b,#d97706)', shadow: 'rgba(245,158,11,0.4)', step: 'link', payMethod: 'Link' },
-                                        { method: t('counter.makeInvoice.paymentCredit'), icon: '💰', bg: 'linear-gradient(135deg,#8b5cf6,#7c3aed)', shadow: 'rgba(139,92,246,0.4)', step: 'wamt', payMethod: 'Credit' },
+                                        { method: t('counter.makeInvoice.paymentCash') || 'Cash', icon: '💵', bg: 'linear-gradient(135deg,#059669,#10b981)', shadow: 'rgba(16,185,129,0.4)', step: null, payMethod: 'Cash' },
+                                        { method: 'UPI', icon: '📱', bg: 'linear-gradient(135deg,#0284c7,#06b6d4)', shadow: 'rgba(2,132,199,0.4)', step: 'upi', payMethod: 'UPI' },
+                                        { method: language === 'ar' ? 'تحويل بنكي' : 'Bank Transfer', icon: '🏦', bg: 'linear-gradient(135deg,#0d9488,#14b8a6)', shadow: 'rgba(13,148,136,0.4)', step: 'bank', payMethod: 'Bank Transfer' },
                                     ].map(({ method, icon, bg, shadow, step, payMethod }) => (
                                         <button
                                             key={payMethod}
                                             type="button"
                                             onClick={() => step ? setPaymentStep(step) : handleSettleAndPay(payMethod)}
-                                            className="relative flex flex-col items-center justify-center p-4 rounded-2xl text-white transition-all hover:-translate-y-1 active:scale-95 group overflow-hidden"
+                                            className="relative flex flex-col items-center justify-center p-3.5 rounded-2xl text-white transition-all hover:-translate-y-1 active:scale-95 group overflow-hidden"
                                             style={{ background: bg, boxShadow: `0 8px 20px -5px ${shadow}` }}
                                         >
                                             <span className="text-2xl mb-1 group-hover:scale-110 transition-transform">{icon}</span>
-                                            <span className="text-[10px] font-bold uppercase tracking-widest">{method}</span>
+                                            <span className="text-[10px] font-bold uppercase tracking-widest text-center leading-tight">{method}</span>
                                         </button>
                                     ))}
                                     </div>
@@ -2552,6 +2555,182 @@ const MakeInvoice = () => {
                                     </button>
                                 </div>
                             )}
+
+                            {/* ── STEP: UPI ── */}
+                            {paymentStep === 'upi' && (() => {
+                                const payVal = paymentMode === 'full' ? totalAmount : (Number(amountReceived) || 0);
+                                const upiVpa = 'kiaanlaundry@upi';
+                                const upiUri = `upi://pay?pa=${upiVpa}&pn=Kiaan%20Laundry%20Services&am=${payVal.toFixed(2)}&cu=INR`;
+                                const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(upiUri)}`;
+
+                                return (
+                                    <div className="space-y-4 mt-2">
+                                        {/* Top Header Badge */}
+                                        <div className="flex flex-col items-center justify-center p-3 rounded-2xl bg-sky-500/10 border border-sky-500/20 text-center">
+                                            <div className="flex items-center gap-2 mb-1">
+                                                <span className="text-xl">📱</span>
+                                                <span className="text-sm font-bold text-sky-400">UPI Instant Payment</span>
+                                            </div>
+                                            <p className="text-[11px] text-secondary">Supports GPay, PhonePe, Paytm, BHIM & all UPI Apps</p>
+                                        </div>
+
+                                        {/* QR Code Container */}
+                                        <div className="flex flex-col items-center justify-center p-4 bg-surface-alt/60 rounded-2xl border border-border/80 shadow-inner">
+                                            <div className="p-2 bg-white rounded-xl shadow-lg border border-slate-200 mb-2">
+                                                <img 
+                                                    src={qrCodeUrl} 
+                                                    alt="UPI Payment QR Code" 
+                                                    className="w-44 h-44 object-contain"
+                                                />
+                                            </div>
+                                            <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 mt-1">
+                                                <span>Payable Amount:</span>
+                                                <span className="font-mono font-bold text-sm">{formatCurrency(payVal)}</span>
+                                            </div>
+                                            <p className="text-[10px] text-slate-400 mt-1">Scan QR code using any UPI mobile app</p>
+                                        </div>
+
+                                        {/* VPA ID Copy Section */}
+                                        <div className="bg-surface-alt/40 border border-border rounded-xl p-3 flex justify-between items-center">
+                                            <div>
+                                                <p className="text-[10px] uppercase font-bold text-secondary">UPI VPA ID</p>
+                                                <p className="text-xs font-mono font-bold text-primary mt-0.5">{upiVpa}</p>
+                                            </div>
+                                            <button
+                                                type="button"
+                                                onClick={() => {
+                                                    navigator.clipboard.writeText(upiVpa);
+                                                    toast.success('UPI ID copied to clipboard!');
+                                                }}
+                                                className="px-3 py-1.5 bg-sky-600 hover:bg-sky-700 text-white rounded-lg text-xs font-bold transition-all shadow active:scale-95 flex items-center gap-1"
+                                            >
+                                                📋 Copy
+                                            </button>
+                                        </div>
+
+                                        {/* UTR / Ref Number Input */}
+                                        <div>
+                                            <label className="text-xs font-semibold text-secondary uppercase tracking-wider">Transaction UTR / Ref Number (Optional)</label>
+                                            <input
+                                                type="text"
+                                                className="mt-1 w-full rounded-xl border border-border bg-surface px-3 py-2 text-sm text-primary font-mono focus:outline-none focus:ring-2 focus:ring-sky-400/40"
+                                                placeholder="e.g. 12-digit UTR Number"
+                                                value={upiForm.refNo}
+                                                onChange={(e) => setUpiForm(f => ({ ...f, refNo: e.target.value }))}
+                                            />
+                                        </div>
+
+                                        {/* Confirm Payment Button */}
+                                        <button
+                                            type="button"
+                                            onClick={() => handleSettleAndPay('UPI')}
+                                            className="w-full py-3 rounded-2xl font-bold text-white text-sm tracking-wider transition-all hover:scale-[1.02] active:scale-95 shadow-lg"
+                                            style={{ background: 'linear-gradient(135deg,#0284c7,#06b6d4)', boxShadow: '0 6px 18px rgba(2,132,199,0.4)' }}
+                                        >
+                                            📱 Confirm & Settle via UPI
+                                        </button>
+                                    </div>
+                                );
+                            })()}
+
+                            {/* ── STEP: BANK TRANSFER ── */}
+                            {paymentStep === 'bank' && (() => {
+                                const payVal = paymentMode === 'full' ? totalAmount : (Number(amountReceived) || 0);
+                                const bankDetails = {
+                                    bankName: 'HDFC Bank',
+                                    accountName: 'Kiaan Laundry Services Pvt Ltd',
+                                    accountNo: '50200084930211',
+                                    ifscCode: 'HDFC0001234',
+                                    branch: 'Commercial Business Branch'
+                                };
+
+                                return (
+                                    <div className="space-y-3.5 mt-2">
+                                        {/* Header */}
+                                        <div className="flex flex-col items-center justify-center p-3 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-center">
+                                            <div className="flex items-center gap-2 mb-1">
+                                                <span className="text-xl">🏦</span>
+                                                <span className="text-sm font-bold text-teal-400">Bank to Bank Transfer</span>
+                                            </div>
+                                            <p className="text-[11px] text-secondary">IMPS / NEFT / RTGS Wire Transfer</p>
+                                        </div>
+
+                                        {/* Bank Account Details Card */}
+                                        <div className="bg-surface-alt/70 border border-teal-500/30 rounded-2xl p-3.5 space-y-2.5 shadow-md">
+                                            <div className="flex justify-between items-center border-b border-border/50 pb-2">
+                                                <div>
+                                                    <p className="text-[10px] text-secondary font-semibold uppercase">Bank Name</p>
+                                                    <p className="text-xs font-bold text-primary">{bankDetails.bankName}</p>
+                                                </div>
+                                                <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+                                                    {formatCurrency(payVal)}
+                                                </span>
+                                            </div>
+
+                                            <div>
+                                                <p className="text-[10px] text-secondary font-semibold uppercase">Account Holder</p>
+                                                <p className="text-xs font-semibold text-primary">{bankDetails.accountName}</p>
+                                            </div>
+
+                                            <div className="flex justify-between items-center bg-surface p-2 rounded-xl border border-border/60">
+                                                <div>
+                                                    <p className="text-[9px] text-secondary font-semibold uppercase">Account Number</p>
+                                                    <p className="text-xs font-mono font-bold text-primary">{bankDetails.accountNo}</p>
+                                                </div>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => {
+                                                        navigator.clipboard.writeText(bankDetails.accountNo);
+                                                        toast.success('Account Number copied!');
+                                                    }}
+                                                    className="px-2.5 py-1 bg-teal-600 hover:bg-teal-700 text-white rounded-md text-[10px] font-bold transition-all"
+                                                >
+                                                    📋 Copy
+                                                </button>
+                                            </div>
+
+                                            <div className="flex justify-between items-center bg-surface p-2 rounded-xl border border-border/60">
+                                                <div>
+                                                    <p className="text-[9px] text-secondary font-semibold uppercase">IFSC / Swift Code</p>
+                                                    <p className="text-xs font-mono font-bold text-primary">{bankDetails.ifscCode}</p>
+                                                </div>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => {
+                                                        navigator.clipboard.writeText(bankDetails.ifscCode);
+                                                        toast.success('IFSC Code copied!');
+                                                    }}
+                                                    className="px-2.5 py-1 bg-teal-600 hover:bg-teal-700 text-white rounded-md text-[10px] font-bold transition-all"
+                                                >
+                                                    📋 Copy
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        {/* Transaction UTR / Ref Number Input */}
+                                        <div>
+                                            <label className="text-xs font-semibold text-secondary uppercase tracking-wider">Bank Reference / UTR Number (Optional)</label>
+                                            <input
+                                                type="text"
+                                                className="mt-1 w-full rounded-xl border border-border bg-surface px-3 py-2 text-sm text-primary font-mono focus:outline-none focus:ring-2 focus:ring-teal-400/40"
+                                                placeholder="e.g. UTR987654321012"
+                                                value={bankForm.utrNo}
+                                                onChange={(e) => setBankForm(f => ({ ...f, utrNo: e.target.value }))}
+                                            />
+                                        </div>
+
+                                        {/* Confirm Bank Transfer Button */}
+                                        <button
+                                            type="button"
+                                            onClick={() => handleSettleAndPay('Bank Transfer')}
+                                            className="w-full py-3 rounded-2xl font-bold text-white text-sm tracking-wider transition-all hover:scale-[1.02] active:scale-95 shadow-lg"
+                                            style={{ background: 'linear-gradient(135deg,#0d9488,#14b8a6)', boxShadow: '0 6px 18px rgba(13,148,136,0.4)' }}
+                                        >
+                                            🏦 Confirm & Settle Bank Transfer
+                                        </button>
+                                    </div>
+                                );
+                            })()}
 
                             <p className={`text-center text-[10px] mt-4 ${theme === 'dark' ? 'text-slate-500' : 'text-slate-400'}`}>
                                 Secured payment • Invoice saved on completion

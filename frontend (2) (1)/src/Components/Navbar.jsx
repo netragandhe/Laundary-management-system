@@ -49,7 +49,7 @@ const Navbar = () => {
   const handleLogout = () => {
     localStorage.removeItem('user');
     toast.success(t('nav.logoutSuccess') || 'Logged out successfully');
-    navigate('/');
+    navigate('/login');
   };
 
   const getTranslatedRole = (role) => {

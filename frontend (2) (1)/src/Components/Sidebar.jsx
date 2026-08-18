@@ -136,7 +136,7 @@ const Sidebar = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
     toast.success(t('nav.logoutSuccess') || 'Logged out successfully');
-    navigate('/');
+    navigate('/login');
   };
 
   return (

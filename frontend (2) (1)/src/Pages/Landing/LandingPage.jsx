@@ -117,7 +117,7 @@ const LandingPage = () => {
         }
 
         const options = {
-          key: 'rzp_live_T2', // User's provided Key ID
+          key: process.env.REACT_APP_RAZORPAY_KEY_ID || 'rzp_live_T2CGGz8NLUuopj', // User's provided Key ID
           amount: initRes.data.amount,
           currency: initRes.data.currency,
           name: 'Kiaan Technology',
@@ -677,7 +677,7 @@ const LandingPage = () => {
             <div className="zealth-price-card">
               <div>
                 <div className="zealth-price-tier">Starter</div>
-                <div className="zealth-price-amount">₹999 <span>/ month</span></div>
+                <div className="zealth-price-amount">₹1 <span>/ month</span></div>
                 <p style={{ fontSize: '0.85rem', color: 'var(--z-text-muted)' }}>Great for single busy laundry outlet store.</p>
                 <ul className="zealth-price-features">
                   <li className="zealth-price-feature"><FiCheck style={{ color: '#00f2fe' }} /> Up to 300 Garments / Month</li>
@@ -692,7 +692,7 @@ const LandingPage = () => {
               </div>
               <button 
                 type="button" 
-                onClick={() => handleOpenPurchaseModal('Starter Plan (₹999/mo)')} 
+                onClick={() => handleOpenPurchaseModal('Starter Plan (₹1/mo)')} 
                 className="zealth-price-btn"
               >
                 Select Starter Plan
